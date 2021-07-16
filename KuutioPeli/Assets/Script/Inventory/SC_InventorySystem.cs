@@ -69,7 +69,7 @@ public class SC_InventorySystem : MonoBehaviour
         }
         if (showInventory)
         {
-            windowAnimation = Mathf - Lerp(windowAnimation, 0, animationTimer);
+            windowAnimation = Mathf.Lerp(windowAnimation, 0, animationTimer);
             playerController.canMove = false;
         }
         else
@@ -89,7 +89,7 @@ public class SC_InventorySystem : MonoBehaviour
         {
             if (hoveringOverIndex < 0)
             {
-                Instantiate(availableItems[itemSlots8[itemIndexToDrag]], playerController.playerCamera.transform.position + (playerController.playerCamera.transform.forward), Quaternion.identity);
+                Instantiate(availableItems[itemSlots[itemIndexToDrag]], playerController.playerCamera.transform.position + (playerController.playerCamera.transform.forward), Quaternion.identity);
                 itemSlots[itemIndexToDrag] = -1;
 ;           }
             else
@@ -147,7 +147,7 @@ public class SC_InventorySystem : MonoBehaviour
 
                     for (int i = 0; i < availableItems.Length; i++)
                     {
-                        if (availableItems[i].itemName == itemImp.itemName)
+                        if (availableItems[i].itemName == itemTmp.itemName)
                         {
                             detectedItem = itemTmp;
                             detectedItemIndex = i;

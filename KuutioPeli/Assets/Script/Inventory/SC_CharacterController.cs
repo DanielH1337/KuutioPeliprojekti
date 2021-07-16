@@ -50,7 +50,7 @@ public class SC_CharacterController : MonoBehaviour
     if (Input.GetButton("Jump"))
             {
 
-                moveDirection.y = jumpSpeed;
+                moveDirection.y = jump;
 
             }
         }
