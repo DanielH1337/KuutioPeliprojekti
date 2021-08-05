@@ -17,6 +17,7 @@ public class MenuManager : MonoBehaviour
     public GameObject[] frame;
     public GameObject startButton;
     public EventSystem ES;
+    public Animator transition;
     
 
     // Start is called before the first frame update
@@ -72,6 +73,12 @@ public class MenuManager : MonoBehaviour
 
     public void LoadFirstScene()
     {
+        StartCoroutine(LoadLevel());
+    }
+    IEnumerator LoadLevel()
+    {
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(1);
     }
 }
