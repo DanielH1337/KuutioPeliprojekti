@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 
 public class MenuManager : MonoBehaviour
@@ -16,6 +17,7 @@ public class MenuManager : MonoBehaviour
     public GameObject[] frame;
     public GameObject startButton;
     public EventSystem ES;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -63,5 +65,13 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         frame[0].SetActive(true);
     }
-    
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void LoadFirstScene()
+    {
+        SceneManager.LoadScene(1);
+    }
 }
