@@ -31,7 +31,7 @@ public class RotTrig : MonoBehaviour
             if (Input.GetKey("e"))
             {
                 Debug.Log("success");
-                RotateCube();
+                StartCoroutine(RotateCube());
                 /*trigger_safety = true;
                 y = y + 90;
                 rb.transform.Rotate(y, x, z);*/
@@ -46,6 +46,7 @@ public class RotTrig : MonoBehaviour
 
     IEnumerator RotateCube()
     {
+        Debug.Log("Rotate ON");
         for (int i = 0; i == rotTarget; i++)
         {
             Debug.Log(i);
