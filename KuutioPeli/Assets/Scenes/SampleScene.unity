@@ -3888,6 +3888,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 602229330}
   speed: 0
+  Trotation: {x: 0, y: 0, z: 0}
+  RotSpeed: 0
 --- !u!54 &602229330
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6772,6 +6774,14 @@ PrefabInstance:
       propertyPath: rb
       value: 
       objectReference: {fileID: 602229330}
+    - target: {fileID: 6532098688861080062, guid: 1616249fb0c6e6d408c69213bfbbf9fd, type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6532098688861080062, guid: 1616249fb0c6e6d408c69213bfbbf9fd, type: 3}
+      propertyPath: rotTarget
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 7212707684107685810, guid: 1616249fb0c6e6d408c69213bfbbf9fd, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -1,11 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RotTrig : MonoBehaviour
 {
     bool trigger_safety = true;
     public Rigidbody rb;
+    public float speed;
+    public int rotTarget;
     float x;
     float y;
     float z;
@@ -14,27 +15,43 @@ public class RotTrig : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player" && trigger_safety == false )
+        if (other.gameObject.tag == "Player" && trigger_safety == false)
         {
             if (Input.GetKey("e"))
             {
                 Debug.Log("success");
-                trigger_safety = true;
+                RotateCube();
+                /*trigger_safety = true;
                 y = y + 90;
-                rb.transform.Rotate(y, x, z);
+                rb.transform.Rotate(y, x, z);*/
+                for (int i = 0; i == rotTarget; i++)
+                {
+                    Debug.Log(i);
+                    rb.transform.Rotate(Vector3.up * speed * Time.deltaTime);
+                }
             }
         }
+    }
+
+    IEnumerator RotateCube()
+    {
+        for (int i = 0; i == rotTarget; i++)
+        {
+            Debug.Log(i);
+            rb.transform.Rotate(Vector3.up * speed * Time.deltaTime);
+        }
+        yield return "done";
     }
 
     private void OnTriggerEnter(Collider other)
