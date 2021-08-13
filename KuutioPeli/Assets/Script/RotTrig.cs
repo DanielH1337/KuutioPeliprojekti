@@ -5,17 +5,20 @@ public class RotTrig : MonoBehaviour
 {
     bool trigger_safety = true;
     public Rigidbody rb;
+    [Header("for 90 turn in 2s = speed=.5 rT=90 multiply=2")]
     public float speed;
-    public int rotTarget;
+    public float rotTarget;
+    public float multiplyBy;
     float x;
     float y;
-    float z;
-
+    float z;   
+    private bool b;
+    public Vector3 CubeVects;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -31,15 +34,10 @@ public class RotTrig : MonoBehaviour
             if (Input.GetKey("e"))
             {
                 Debug.Log("success");
-                StartCoroutine(RotateCube());
-                /*trigger_safety = true;
-                y = y + 90;
-                rb.transform.Rotate(y, x, z);*/
-                for (int i = 0; i == rotTarget; i++)
+                if (b == false)
                 {
-                    Debug.Log(i);
-                    rb.transform.Rotate(Vector3.up * speed * Time.deltaTime);
-                }
+                    StartCoroutine(RotateCube());
+                }                                
             }
         }
     }
@@ -47,12 +45,18 @@ public class RotTrig : MonoBehaviour
     IEnumerator RotateCube()
     {
         Debug.Log("Rotate ON");
-        for (int i = 0; i == rotTarget; i++)
+        Debug.Log(rotTarget);
+        b = true;        
+        for (float i = 0; i <= multiplyBy*rotTarget-1; i++)
         {
-            Debug.Log(i);
-            rb.transform.Rotate(Vector3.up * speed * Time.deltaTime);
+            Debug.Log("i");
+            rb.transform.Rotate(CubeVects * speed);
+            Debug.Log(rb.position.x);
+            yield return null;
         }
-        yield return "done";
+        b = false;
+        
+        
     }
 
     private void OnTriggerEnter(Collider other)

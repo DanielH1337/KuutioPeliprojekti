@@ -1362,6 +1362,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5598204194073503603, guid: c37bf06ede28ff0488eee84e45e4f419, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5598204194073503604, guid: c37bf06ede28ff0488eee84e45e4f419, type: 3}
       propertyPath: m_Name
       value: World_Cube

@@ -3881,7 +3881,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602229327}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdd93470a023dfc4f8fa86912ea5b8a4, type: 3}
   m_Name: 
@@ -6725,11 +6725,23 @@ PrefabInstance:
       objectReference: {fileID: 602229330}
     - target: {fileID: 6532098688861080062, guid: 1616249fb0c6e6d408c69213bfbbf9fd, type: 3}
       propertyPath: speed
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6532098688861080062, guid: 1616249fb0c6e6d408c69213bfbbf9fd, type: 3}
       propertyPath: rotTarget
-      value: 90
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6532098688861080062, guid: 1616249fb0c6e6d408c69213bfbbf9fd, type: 3}
+      propertyPath: multiplyBy
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6532098688861080062, guid: 1616249fb0c6e6d408c69213bfbbf9fd, type: 3}
+      propertyPath: CubeVects.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6532098688861080062, guid: 1616249fb0c6e6d408c69213bfbbf9fd, type: 3}
+      propertyPath: CubeVects.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7212707684107685810, guid: 1616249fb0c6e6d408c69213bfbbf9fd, type: 3}
       propertyPath: m_RootOrder
