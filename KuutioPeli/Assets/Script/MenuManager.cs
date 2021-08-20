@@ -18,11 +18,15 @@ public class MenuManager : MonoBehaviour
     public GameObject startButton;
     public EventSystem ES;
     public Animator transition;
-    
+    public static AudioClip wooshSound;
+
+    static AudioSource AudioSrc;
 
     // Start is called before the first frame update
     void Start()
     {
+        wooshSound = Resources.Load<AudioClip>("woosh");
+        AudioSrc = GetComponent<AudioSource>();
         frame[0].SetActive(true);
         frame[1].SetActive(false);
     }
@@ -42,6 +46,7 @@ public class MenuManager : MonoBehaviour
     }
     public void Frame1()
     {
+        AudioSrc.PlayOneShot(wooshSound);
         StartCoroutine(Framedelay1());
         ES.SetSelectedGameObject(startButton);
         frame0_cam.gameObject.SetActive(false);
@@ -77,6 +82,7 @@ public class MenuManager : MonoBehaviour
     }
     IEnumerator LoadLevel()
     {
+        AudioSrc.PlayOneShot(wooshSound);
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(1);
