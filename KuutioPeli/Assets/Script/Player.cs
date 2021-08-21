@@ -3,26 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 public class Player : MonoBehaviour
 {
-
+    public static Player instance;
+    private TimeSpan timePlaying;
     public int health=100;
-    private float startTime;
+    
     public int level;
     public Text Timertext;
-    // Start is called before the first frame update
-    void Start()
+
+    private float elapsedTime;
+    private bool timerGoing;
+
+    private void Awake()
     {
-        startTime=Time.time;
-        level = SceneManager.GetActiveScene().buildIndex;
+        instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void Start()
     {
-        float t = Time.time - startTime;
-        string minutes = ((int) t / 60).ToString();
-        string seconds = (t % 60).ToString("f0");
-        Timertext.text = minutes +":"+ seconds;
+        Timertext.text = "Time:00:00.00";
+        timerGoing =false;
+        level = SceneManager.GetActiveScene().buildIndex;
+  
     }
+
+    public void BeginTimer()
+    {
+        timerGoing = true;
+        elapsedTime = 0f;
+
+        StartCoroutine(UpdateTimer());
+    }
+    public void EndTimer()
+    {
+        timerGoing = false;
+        Timertext.color = Color.red;
+    }
+    private IEnumerator UpdateTimer()
+    {
+        while (timerGoing)
+        {
+            Debug.Log("Moi");
+            elapsedTime += Time.deltaTime;
+            timePlaying = TimeSpan.FromSeconds(elapsedTime);
+            string timePlayinghStr = "Time: " + timePlaying.ToString("mm':'ss'.'ff");
+            Timertext.text = timePlayinghStr;
+
+            yield return null;
+        }
+    }
+    
 }
