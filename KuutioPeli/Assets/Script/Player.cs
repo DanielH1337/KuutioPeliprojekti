@@ -46,7 +46,6 @@ public class Player : MonoBehaviour
     {
         while (timerGoing)
         {
-            Debug.Log("Moi");
             elapsedTime += Time.deltaTime;
             timePlaying = TimeSpan.FromSeconds(elapsedTime);
             string timePlayinghStr = "Time: " + timePlaying.ToString("mm':'ss'.'ff");
