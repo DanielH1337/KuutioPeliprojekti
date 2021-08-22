@@ -87,4 +87,8 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(1);
     }
+    public void loadSavedGame()
+    {
+        Player.instance.LoadPlayer();
+    }
 }
