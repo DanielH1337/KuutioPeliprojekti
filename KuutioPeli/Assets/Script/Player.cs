@@ -28,7 +28,8 @@ public class Player : MonoBehaviour
         if (timerGoing == false)
         {
             Timertext.color = Color.white;
-            BeginTimer();
+            timerGoing = true;
+            StartCoroutine(UpdateTimer());
         }
         timerGoing = false;
         elapsedTime = data.elapsedTime;
