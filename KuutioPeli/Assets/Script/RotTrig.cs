@@ -62,6 +62,7 @@ public class RotTrig : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         trigger_safety = false;
+        
     }
 
     private void OnTriggerExit(Collider other)

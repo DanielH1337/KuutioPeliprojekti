@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class SaveJaLoad
+[System.Serializable]
+public class PlayerData
 {
     //Save ja load systeemi binaryformatterilla
     public int level;
-    public string time;
+   
     public int health;
     public float[] position;
+    public float elapsedTime;
 
 
-
-    public SaveJaLoad(Player player)
+    public PlayerData(Player player)
     {
         level = player.level;
         health = player.health;
-        time = player.Timertext.text;
+        elapsedTime=player.elapsedTime;
        
 
         position = new float[3];

@@ -87,4 +87,5 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(1);
     }
+    
 }
