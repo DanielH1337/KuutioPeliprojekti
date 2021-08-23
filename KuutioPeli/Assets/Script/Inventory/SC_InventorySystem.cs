@@ -7,7 +7,7 @@ public class SC_InventorySystem : MonoBehaviour
 
     public Texture crosshairTexture;
     public SC_CharacterController playerController;
-    public SC_PickItem[] availableItems; //Prefab list
+    public SC_Pickitem[] availableItems; //Prefab list
 
     //Free slots
 
@@ -24,7 +24,7 @@ public class SC_InventorySystem : MonoBehaviour
 
 
     //Pickup
-    SC_PickItem detectedItem;
+    SC_Pickitem detectedItem;
     int detectedItemIndex;
     
 
@@ -141,9 +141,9 @@ public class SC_InventorySystem : MonoBehaviour
 
             if (objectHit.CompareTag("Respawn"))
             {
-                if ((detectedItem == null || detectedItem.transform != objectHit) && objectHit.GetComponent<SC_PickItem>() != null)
+                if ((detectedItem == null || detectedItem.transform != objectHit) && objectHit.GetComponent<SC_Pickitem>() != null)
                 {
-                    SC_PickItem itemTmp = objectHit.GetComponent<SC_PickItem>();
+                    SC_Pickitem itemTmp = objectHit.GetComponent<SC_Pickitem>();
 
                     for (int i = 0; i < availableItems.Length; i++)
                     {
