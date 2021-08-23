@@ -5,7 +5,7 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
     public float MouseSensitivity = 100f;
-
+    int buttonclicks;
     public Transform playerBody;
     float xRotation = 0f;
 
@@ -30,10 +30,19 @@ public class MouseLook : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
+            buttonclicks += 1;
         
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            if (buttonclicks == 2)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                buttonclicks = 0;
+            }
+            
         }
 
     }

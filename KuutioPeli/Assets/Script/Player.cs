@@ -6,13 +6,13 @@ using UnityEngine.UI;
 using System;
 public class Player : MonoBehaviour
 {
+    public CharacterController control;
     public static Player instance;
-    private TimeSpan timePlaying;
+    public TimeSpan timePlaying;
     public int health=100;
     public int level;
     public Text Timertext;
-
-    private float elapsedTime;
+    public float elapsedTime;
     private bool timerGoing;
 
     public void SavePlayer()
@@ -21,17 +21,28 @@ public class Player : MonoBehaviour
     }
     public void LoadPlayer()
     {
+        control.enabled = false;
         PlayerData data=  SaveSystem.LoadPlayer();
         level = data.level;
         health = data.health;
+        if (timerGoing == false)
+        {
+            Timertext.color = Color.white;
+            BeginTimer();
+        }
+        timerGoing = false;
+        elapsedTime = data.elapsedTime;
+        timerGoing = true;
 
         Vector3 position;
         position.x = data.position[0];
         position.y = data.position[1];
         position.z = data.position[2];
-        SceneManager.LoadScene(level);
         transform.position = position;
+        Debug.Log(transform.position);
+        control.enabled = true;
         
+
     }
     
     private void Awake()
@@ -45,9 +56,11 @@ public class Player : MonoBehaviour
         Timertext.text = "Time:00:00.00";
         timerGoing =false;
         level = SceneManager.GetActiveScene().buildIndex;
+        
        
 
     }
+   
 
     public void BeginTimer()
     {

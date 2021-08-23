@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
     public float JumpS = 3;
 
     Vector3 velocity;
+    public int health = 100;
+    public int level = 1;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -53,4 +55,5 @@ public class Movement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     
     }
+ 
 }
