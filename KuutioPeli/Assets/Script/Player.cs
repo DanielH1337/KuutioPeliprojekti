@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
+using TMPro;
 public class Player : MonoBehaviour
 {
     public CharacterController control;
@@ -11,9 +12,11 @@ public class Player : MonoBehaviour
     public TimeSpan timePlaying;
     public int health=100;
     public int level;
-    public Text Timertext;
+    public TMP_Text Timertext;
     public float elapsedTime;
     private bool timerGoing;
+    public string playerName;
+    public TMP_Text pName;
 
     public void SavePlayer()
     {
@@ -57,7 +60,9 @@ public class Player : MonoBehaviour
         Timertext.text = "Time:00:00.00";
         timerGoing =false;
         level = SceneManager.GetActiveScene().buildIndex;
-        
+        playerName = PlayerPrefs.GetString("name");
+    
+        pName.text = playerName;
        
 
     }

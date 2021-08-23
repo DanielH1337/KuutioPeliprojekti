@@ -12,6 +12,7 @@ public class MenuManager : MonoBehaviour
     public CinemachineBrain mainCamera;
     public CinemachineVirtualCamera frame0_cam;
     public CinemachineVirtualCamera frame1_cam;
+    public CinemachineVirtualCamera frame2_cam;
     //public CinemachineVirtualCamera frame2_cam;
 
     public GameObject[] frame;
@@ -19,6 +20,7 @@ public class MenuManager : MonoBehaviour
     public EventSystem ES;
     public Animator transition;
     public static AudioClip wooshSound;
+    public float time;
 
     static AudioSource AudioSrc;
 
@@ -29,6 +31,13 @@ public class MenuManager : MonoBehaviour
         AudioSrc = GetComponent<AudioSource>();
         frame[0].SetActive(true);
         frame[1].SetActive(false);
+        frame[2].SetActive(false);
+        frame[3].SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        time = PlayerPrefs.GetFloat("Time");
+        Debug.Log(time);
+        
     }
 
     // Update is called once per frame
@@ -39,10 +48,12 @@ public class MenuManager : MonoBehaviour
             Frame1();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !frame[0].activeInHierarchy)
+        else if (Input.GetKeyDown(KeyCode.Escape) && !frame[0].activeInHierarchy)
         {
             Frame0();
         }
+
+        
     }
     public void Frame1()
     {
@@ -51,25 +62,42 @@ public class MenuManager : MonoBehaviour
         ES.SetSelectedGameObject(startButton);
         frame0_cam.gameObject.SetActive(false);
         frame1_cam.gameObject.SetActive(true);
+        frame2_cam.gameObject.SetActive(false);
     }
     public void Frame0()
     {
+        
         StartCoroutine(Framedelay0());
         frame1_cam.gameObject.SetActive(false);
         frame0_cam.gameObject.SetActive(true);
+        frame2_cam.gameObject.SetActive(false);
+    }
+    public void Frame2()
+    {
+        AudioSrc.PlayOneShot(wooshSound);
+        frame0_cam.gameObject.SetActive(false);
+        frame1_cam.gameObject.SetActive(false);
+        frame2_cam.gameObject.SetActive(true);
+        frame[1].SetActive(false);
     }
 
     IEnumerator Framedelay1()
     {
+        frame[3].SetActive(false);
+        frame[2].SetActive(false);
         frame[0].SetActive(false);
         yield return new WaitForSeconds(2);
         frame[1].SetActive(true);
+        
     }
     IEnumerator Framedelay0()
     {
+        frame[3].SetActive(false);
+        frame[2].SetActive(false);
         frame[1].SetActive(false);
         yield return new WaitForSeconds(2);
         frame[0].SetActive(true);
+        
     }
     public void Quit()
     {
@@ -87,5 +115,16 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(1);
     }
-    
+    public void exitName()
+    {
+        AudioSrc.PlayOneShot(wooshSound);
+        frame[0].SetActive(false);
+        frame[1].SetActive(false);
+        frame[2].SetActive(false);
+        frame[3].SetActive(true);
+    }
+    public void highscoreView()
+    {
+        frame[3].SetActive(false);
+    }
 }

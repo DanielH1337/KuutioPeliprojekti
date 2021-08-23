@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class winbox : MonoBehaviour
 {
+    public Animator transition;
+    public float time;
     void Start()
     {
     
@@ -12,7 +15,18 @@ public class winbox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        time = Player.instance.elapsedTime;
+        PlayerPrefs.SetFloat("Time",time);
+        StartCoroutine(loadMain());
         Player.instance.EndTimer();
+        //PlayerPrefs.SetInt(int
+    }
+    IEnumerator loadMain()
+    {
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(0);
+
     }
    
 }
