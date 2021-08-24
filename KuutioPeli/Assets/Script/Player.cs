@@ -135,6 +135,7 @@ public class Player : MonoBehaviour
     }
     public void LoadMain()
     {
+        Time.timeScale = 1;
         StartCoroutine(loadMain());
     }
    IEnumerator loadMain()
