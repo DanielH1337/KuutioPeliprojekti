@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     public string playerName;
     public TMP_Text pName;
     public Animator transition;
-    public GameObject PauseMenu,TabKeyText;
+    public GameObject PauseMenu,TabKeyText,Canvas;
     private int buttonclick=0;
     
     public void SavePlayer()
@@ -141,8 +141,13 @@ public class Player : MonoBehaviour
    IEnumerator loadMain()
     {
         transition.SetTrigger("Start");
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(0);
+    }
+   public void transitionButtonclick()
+    {
+        Time.timeScale = 1;
+        Canvas.GetComponent<Animator>().Play("LoadLevelFade"); 
     }
     
    

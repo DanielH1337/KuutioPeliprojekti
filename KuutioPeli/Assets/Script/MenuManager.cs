@@ -123,7 +123,7 @@ public class MenuManager : MonoBehaviour
         {
             SaveSystem.Deleteall();
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(1);
     }
     
@@ -144,7 +144,7 @@ public class MenuManager : MonoBehaviour
         {
             AudioSrc.PlayOneShot(wooshSound);
             transition.SetTrigger("Start");
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             SceneManager.LoadScene(1);
         }
         else
