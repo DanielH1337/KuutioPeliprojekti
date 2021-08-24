@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
     private bool timerGoing;
     public string playerName;
     public TMP_Text pName;
+    public Animator transition;
+    public GameObject PauseMenu,TabKeyText;
+    private int buttonclick=0;
     
     public void SavePlayer()
     {
@@ -32,12 +35,12 @@ public class Player : MonoBehaviour
             PlayerData data = SaveSystem.LoadPlayer();
             level = data.level;
             health = data.health;
-            if (timerGoing == false)
+           /* if (timerGoing == false)
             {
                 Timertext.color = Color.white;
                 timerGoing = true;
                 StartCoroutine(UpdateTimer());
-            }
+            }*/
             timerGoing = false;
             elapsedTime = data.elapsedTime;
             timerGoing = true;
@@ -64,11 +67,27 @@ public class Player : MonoBehaviour
     {
         instance = this;
     }
-
+    private void Update()
+    {
+        if (buttonclick == 2)
+        {
+            Time.timeScale = 1;
+            PauseMenu.SetActive(false);
+            TabKeyText.SetActive(true);
+            buttonclick = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            buttonclick += 1;
+            PauseMenu.SetActive(true);
+            TabKeyText.SetActive(false);
+            Time.timeScale = 0;
+        }
+    }
 
     private void Start()
     {
-        
+        PauseMenu.SetActive(false);
         Timertext.text = "Time:00:00.00";
         timerGoing =false;
         level = SceneManager.GetActiveScene().buildIndex;
@@ -86,9 +105,6 @@ public class Player : MonoBehaviour
         }
            
        
-
-
-
 
     }
    
@@ -117,7 +133,16 @@ public class Player : MonoBehaviour
             yield return null;
         }
     }
-   
+    public void LoadMain()
+    {
+        StartCoroutine(loadMain());
+    }
+   IEnumerator loadMain()
+    {
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(0);
+    }
     
    
 }

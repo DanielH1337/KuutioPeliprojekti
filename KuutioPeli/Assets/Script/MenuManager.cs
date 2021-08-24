@@ -55,6 +55,9 @@ public class MenuManager : MonoBehaviour
 
         
     }
+    //Main menu paneelit on jaettu frameihin, niitä aktivoidaan eri kohdissa main menua.
+
+    //Ensimmäinen frame aktivoidaan press any key.
     public void Frame1()
     {
         AudioSrc.PlayOneShot(wooshSound);
@@ -64,6 +67,7 @@ public class MenuManager : MonoBehaviour
         frame1_cam.gameObject.SetActive(true);
         frame2_cam.gameObject.SetActive(false);
     }
+    //Frame ykkösestä jos painetaan esc tullaan taas frame nollaan.
     public void Frame0()
     {
         
@@ -83,11 +87,11 @@ public class MenuManager : MonoBehaviour
 
     IEnumerator Framedelay1()
     {
-        frame[3].SetActive(false);
+        frame[1].SetActive(false);
         frame[2].SetActive(false);
         frame[0].SetActive(false);
         yield return new WaitForSeconds(2);
-        frame[1].SetActive(true);
+        frame[3].SetActive(true);
         
     }
     IEnumerator Framedelay0()
@@ -103,7 +107,8 @@ public class MenuManager : MonoBehaviour
     {
         Application.Quit();
     }
-
+    
+    //Aloitetaan ensimmäinen taso eli start nappi.
     public void LoadFirstScene()
     {
         
@@ -121,27 +126,38 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(1);
     }
-    public void exitName()
-    {
-        AudioSrc.PlayOneShot(wooshSound);
-        frame[0].SetActive(false);
-        frame[1].SetActive(false);
-        frame[2].SetActive(false);
-        frame[3].SetActive(true);
-    }
+    
     public void highscoreView()
     {
         frame[3].SetActive(false);
     }
+    
+    //Aloitetaan tallennettu peli.
     public void loadGame()
     {
         StartCoroutine(LoadGame());
     }
     IEnumerator LoadGame()
     {
+        string Path = Application.persistentDataPath + "/player.fun";
+        if (File.Exists(Path))
+        {
+            AudioSrc.PlayOneShot(wooshSound);
+            transition.SetTrigger("Start");
+            yield return new WaitForSeconds(2);
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            Debug.Log("File not found");
+        }
+    }
+    public void StartButton()
+    {
         AudioSrc.PlayOneShot(wooshSound);
-        transition.SetTrigger("Start");
-        yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(1);
+        frame[3].SetActive(false);
+        frame[2].SetActive(false);
+        frame[0].SetActive(false);
+        frame[1].SetActive(true);
     }
 }
