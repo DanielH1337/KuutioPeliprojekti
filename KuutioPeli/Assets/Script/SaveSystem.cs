@@ -35,4 +35,13 @@ public static class SaveSystem
             return null;
         }
     }
+    public static void Deleteall()
+    {
+        string Path = Application.persistentDataPath + "/player.fun";
+        if (File.Exists(Path))
+        {
+            File.Delete(Application.persistentDataPath + "/player.fun");
+        }
+            
+    }
 }

@@ -21,4 +21,5 @@ public class LevelControl : MonoBehaviour
     {
         Player.instance.BeginTimer();
     }
+    
 }

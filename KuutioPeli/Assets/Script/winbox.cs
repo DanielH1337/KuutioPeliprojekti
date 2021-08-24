@@ -19,14 +19,14 @@ public class winbox : MonoBehaviour
         PlayerPrefs.SetFloat("Time",time);
         StartCoroutine(loadMain());
         Player.instance.EndTimer();
-        //PlayerPrefs.SetInt(int
+        
     }
     IEnumerator loadMain()
     {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(0);
-
+        SaveSystem.Deleteall();
     }
    
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-
+using System.IO;
 
 public class MenuManager : MonoBehaviour
 {
@@ -106,13 +106,19 @@ public class MenuManager : MonoBehaviour
 
     public void LoadFirstScene()
     {
+        
         StartCoroutine(LoadLevel());
     }
     IEnumerator LoadLevel()
     {
         AudioSrc.PlayOneShot(wooshSound);
         transition.SetTrigger("Start");
-        yield return new WaitForSeconds(1);
+        string Path = Application.persistentDataPath + "/player.fun";
+        if (File.Exists(Path))
+        {
+            SaveSystem.Deleteall();
+        }
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene(1);
     }
     public void exitName()
@@ -126,5 +132,16 @@ public class MenuManager : MonoBehaviour
     public void highscoreView()
     {
         frame[3].SetActive(false);
+    }
+    public void loadGame()
+    {
+        StartCoroutine(LoadGame());
+    }
+    IEnumerator LoadGame()
+    {
+        AudioSrc.PlayOneShot(wooshSound);
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(1);
     }
 }

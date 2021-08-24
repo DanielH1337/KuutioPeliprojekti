@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 using TMPro;
+using System.IO;
 public class Player : MonoBehaviour
 {
     public CharacterController control;
@@ -17,34 +18,44 @@ public class Player : MonoBehaviour
     private bool timerGoing;
     public string playerName;
     public TMP_Text pName;
-
+    
     public void SavePlayer()
     {
         SaveSystem.SavePlayer(this);
     }
     public void LoadPlayer()
     {
-        control.enabled = false;
-        PlayerData data=  SaveSystem.LoadPlayer();
-        level = data.level;
-        health = data.health;
-        if (timerGoing == false)
+        string Path = Application.persistentDataPath + "/player.fun";
+        if (File.Exists(Path))
         {
-            Timertext.color = Color.white;
+            control.enabled = false;
+            PlayerData data = SaveSystem.LoadPlayer();
+            level = data.level;
+            health = data.health;
+            if (timerGoing == false)
+            {
+                Timertext.color = Color.white;
+                timerGoing = true;
+                StartCoroutine(UpdateTimer());
+            }
+            timerGoing = false;
+            elapsedTime = data.elapsedTime;
             timerGoing = true;
-            StartCoroutine(UpdateTimer());
-        }
-        timerGoing = false;
-        elapsedTime = data.elapsedTime;
-        timerGoing = true;
 
-        Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
-        transform.position = position;
-        Debug.Log(transform.position);
-        control.enabled = true;
+            Vector3 position;
+            position.x = data.position[0];
+            position.y = data.position[1];
+            position.z = data.position[2];
+            transform.position = position;
+            Debug.Log(transform.position);
+            control.enabled = true;
+            
+           
+        }
+        else
+        {
+            Debug.Log("File not found");
+        }
         
 
     }
@@ -57,13 +68,27 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        
         Timertext.text = "Time:00:00.00";
         timerGoing =false;
         level = SceneManager.GetActiveScene().buildIndex;
         playerName = PlayerPrefs.GetString("name");
     
         pName.text = playerName;
+        string Path = Application.persistentDataPath + "/player.fun";
+        if (File.Exists(Path))
+        {
+            LoadPlayer();
+        }
+        else
+        {
+            return;
+        }
+           
        
+
+
+
 
     }
    
@@ -92,5 +117,7 @@ public class Player : MonoBehaviour
             yield return null;
         }
     }
+   
+    
    
 }
