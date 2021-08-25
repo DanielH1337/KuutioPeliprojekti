@@ -18,16 +18,24 @@ public class Player : MonoBehaviour
     private bool timerGoing;
     public string playerName;
     public TMP_Text pName;
-    public Animator transition;
+    public Animator transition,savedgame;
     public GameObject PauseMenu,TabKeyText;
     private int buttonclick=0;
-    
-    
-    
+    static AudioSource AudioSrc;
+    public static AudioClip wooshSound;
+    public static AudioClip clicksound;
+
     //Tallennus funktio
     public void SavePlayer()
     {
+        AudioSrc.PlayOneShot(wooshSound);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        PauseMenu.SetActive(false);
         SaveSystem.SavePlayer(this);
+        Time.timeScale = 1;
+        buttonclick = 0;
+        savedgame.SetTrigger("SavedGame");
     }
     //Funktio joka pys‰ytt‰‰ pelaajan, kun osutaan winboxiin
     public void FreezePosition()
@@ -92,6 +100,7 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
+            AudioSrc.PlayOneShot(clicksound);
             buttonclick += 1;
             PauseMenu.SetActive(true);
             TabKeyText.SetActive(false);
@@ -103,7 +112,9 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        
+        clicksound = Resources.Load<AudioClip>("click");
+        wooshSound = Resources.Load<AudioClip>("woosh");
+        AudioSrc = GetComponent<AudioSource>();
         PauseMenu.SetActive(false);
         Timertext.text = "Time:00:00.00";
         timerGoing =false;
@@ -140,7 +151,7 @@ public class Player : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             timePlaying = TimeSpan.FromSeconds(elapsedTime);
-            string timePlayinghStr = "Time: " + timePlaying.ToString("mm':'ss'.'ff");
+            string timePlayinghStr = "Time: " + timePlaying.ToString("mm':'ss");
             Timertext.text = timePlayinghStr;
 
             yield return null;
@@ -148,6 +159,7 @@ public class Player : MonoBehaviour
     }
     public void LoadMain()
     {
+        AudioSrc.PlayOneShot(wooshSound);
         timerGoing = false;
         Time.timeScale = 1;
         StartCoroutine(loadMain());
@@ -161,48 +173,40 @@ public class Player : MonoBehaviour
     //Load funktio jos valitaan load pausemenusta
    public void LoadButtonFade()
     {
-        PauseMenu.SetActive(false);
-        
-        
-        StartCoroutine(Loadfade());
-        buttonclick = 0;
-    }
-    IEnumerator Loadfade()
-    {
-        Time.timeScale = 1;
-        transition.SetTrigger("Start");
-        yield return new WaitForSeconds(1);
+        AudioSrc.PlayOneShot(wooshSound);
         string Path = Application.persistentDataPath + "/player.fun";
         if (File.Exists(Path))
         {
-            control.enabled = false;
-            PlayerData data = SaveSystem.LoadPlayer();
-            level = data.level;
-            health = data.health;
-            /* if (timerGoing == false)
-             {
-                 Timertext.color = Color.white;
-                 timerGoing = true;
-                 StartCoroutine(UpdateTimer());
-             }*/
-            timerGoing = false;
-            elapsedTime = data.elapsedTime;
-            timerGoing = true;
-
-            Vector3 position;
-            position.x = data.position[0];
-            position.y = data.position[1];
-            position.z = data.position[2];
-            transform.position = position;
-            Debug.Log(transform.position);
-            control.enabled = true;
-
-
+            PauseMenu.SetActive(false);
+            StartCoroutine(Loadfade());
+            buttonclick = 0;
         }
         else
         {
-            Debug.Log("File not found");
+            Debug.Log("Save not found");
         }
+    }
+    IEnumerator Loadfade()
+    {
+        control.enabled = false;
+        Time.timeScale = 1;
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(1);
+        
+        PlayerData data = SaveSystem.LoadPlayer();
+        level = data.level;
+        health = data.health;
+        timerGoing = false;
+        elapsedTime = data.elapsedTime;
+        timerGoing = true;
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
+        Debug.Log(transform.position);
+        control.enabled = true;
+
         transition.SetTrigger("End");
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
