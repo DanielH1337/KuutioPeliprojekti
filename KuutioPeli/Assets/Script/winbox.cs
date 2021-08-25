@@ -15,11 +15,12 @@ public class winbox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         time = Player.instance.elapsedTime;
         PlayerPrefs.SetFloat("Time",time);
         StartCoroutine(loadMain());
         Player.instance.EndTimer();
-        
+        Player.instance.FreezePosition();
     }
     IEnumerator loadMain()
     {

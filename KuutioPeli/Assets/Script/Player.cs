@@ -19,13 +19,23 @@ public class Player : MonoBehaviour
     public string playerName;
     public TMP_Text pName;
     public Animator transition;
-    public GameObject PauseMenu,TabKeyText,Canvas;
+    public GameObject PauseMenu,TabKeyText;
     private int buttonclick=0;
     
+    
+    
+    //Tallennus funktio
     public void SavePlayer()
     {
         SaveSystem.SavePlayer(this);
     }
+    //Funktio joka pys‰ytt‰‰ pelaajan, kun osutaan winboxiin
+    public void FreezePosition()
+    {
+        control.enabled = (false);
+    }
+
+    //Load funktio
     public void LoadPlayer()
     {
         string Path = Application.persistentDataPath + "/player.fun";
@@ -35,12 +45,12 @@ public class Player : MonoBehaviour
             PlayerData data = SaveSystem.LoadPlayer();
             level = data.level;
             health = data.health;
-           /* if (timerGoing == false)
-            {
-                Timertext.color = Color.white;
-                timerGoing = true;
-                StartCoroutine(UpdateTimer());
-            }*/
+            /* if (timerGoing == false)
+             {
+                 Timertext.color = Color.white;
+                 timerGoing = true;
+                 StartCoroutine(UpdateTimer());
+             }*/
             timerGoing = false;
             elapsedTime = data.elapsedTime;
             timerGoing = true;
@@ -52,28 +62,32 @@ public class Player : MonoBehaviour
             transform.position = position;
             Debug.Log(transform.position);
             control.enabled = true;
-            
-           
+
+
         }
         else
         {
             Debug.Log("File not found");
         }
-        
 
     }
     
+    
+    //Tehd‰‰n t‰st‰ objektista singleton
     private void Awake()
     {
         instance = this;
     }
     private void Update()
     {
+        //Pausemenu n‰kyviin ja piiloon painamalla tab n‰pp‰int‰
         if (buttonclick == 2)
         {
             Time.timeScale = 1;
             PauseMenu.SetActive(false);
             TabKeyText.SetActive(true);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             buttonclick = 0;
         }
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -81,12 +95,15 @@ public class Player : MonoBehaviour
             buttonclick += 1;
             PauseMenu.SetActive(true);
             TabKeyText.SetActive(false);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             Time.timeScale = 0;
         }
     }
 
     private void Start()
     {
+        
         PauseMenu.SetActive(false);
         Timertext.text = "Time:00:00.00";
         timerGoing =false;
@@ -99,13 +116,8 @@ public class Player : MonoBehaviour
         {
             LoadPlayer();
         }
-        else
-        {
-            return;
-        }
-           
-       
-
+        
+        
     }
    
 
@@ -121,6 +133,7 @@ public class Player : MonoBehaviour
         timerGoing = false;
         Timertext.color = Color.red;
     }
+    //Ajastimen Funktio
     private IEnumerator UpdateTimer()
     {
         while (timerGoing)
@@ -135,6 +148,7 @@ public class Player : MonoBehaviour
     }
     public void LoadMain()
     {
+        timerGoing = false;
         Time.timeScale = 1;
         StartCoroutine(loadMain());
     }
@@ -144,11 +158,57 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(0);
     }
-   public void transitionButtonclick()
+    //Load funktio jos valitaan load pausemenusta
+   public void LoadButtonFade()
+    {
+        PauseMenu.SetActive(false);
+        
+        
+        StartCoroutine(Loadfade());
+        buttonclick = 0;
+    }
+    IEnumerator Loadfade()
     {
         Time.timeScale = 1;
-        Canvas.GetComponent<Animator>().Play("LoadLevelFade"); 
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(1);
+        string Path = Application.persistentDataPath + "/player.fun";
+        if (File.Exists(Path))
+        {
+            control.enabled = false;
+            PlayerData data = SaveSystem.LoadPlayer();
+            level = data.level;
+            health = data.health;
+            /* if (timerGoing == false)
+             {
+                 Timertext.color = Color.white;
+                 timerGoing = true;
+                 StartCoroutine(UpdateTimer());
+             }*/
+            timerGoing = false;
+            elapsedTime = data.elapsedTime;
+            timerGoing = true;
+
+            Vector3 position;
+            position.x = data.position[0];
+            position.y = data.position[1];
+            position.z = data.position[2];
+            transform.position = position;
+            Debug.Log(transform.position);
+            control.enabled = true;
+
+
+        }
+        else
+        {
+            Debug.Log("File not found");
+        }
+        transition.SetTrigger("End");
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
     }
+
     
-   
+ 
 }

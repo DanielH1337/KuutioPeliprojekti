@@ -30,20 +30,7 @@ public class MouseLook : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            buttonclicks += 1;
         
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            if (buttonclicks == 2)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-                buttonclicks = 0;
-            }
-            
-        }
 
     }
 }

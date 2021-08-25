@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData
 {
-    //Save ja load systeemi binaryformatterilla
+    //Save ja load systeemiin ladattavat muuttujat
     public int level;
    
     public int health;
