@@ -174,10 +174,10 @@ public class Player : MonoBehaviour
     //Load funktio jos valitaan load pausemenusta
    public void LoadButtonFade()
     {
-        AudioSrc.PlayOneShot(wooshSound);
         string Path = Application.persistentDataPath + "/player.fun";
         if (File.Exists(Path))
         {
+            AudioSrc.PlayOneShot(wooshSound);
             PauseMenu.SetActive(false);
             StartCoroutine(Loadfade());
             buttonclick = 0;
