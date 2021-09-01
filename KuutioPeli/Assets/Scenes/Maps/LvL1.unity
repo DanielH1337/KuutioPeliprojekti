@@ -1475,6 +1475,7 @@ MonoBehaviour:
   savedgame: {fileID: 705596084}
   PauseMenu: {fileID: 1785451467}
   TabKeyText: {fileID: 218265808}
+  worldCube: {fileID: 5598204194236348065}
 --- !u!1001 &807721408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3387,5 +3388,10 @@ PrefabInstance:
 --- !u!4 &5598204194236348064 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5598204194073503601, guid: c37bf06ede28ff0488eee84e45e4f419, type: 3}
+  m_PrefabInstance: {fileID: 5598204194236348063}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5598204194236348065 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5598204194073503604, guid: c37bf06ede28ff0488eee84e45e4f419, type: 3}
   m_PrefabInstance: {fileID: 5598204194236348063}
   m_PrefabAsset: {fileID: 0}

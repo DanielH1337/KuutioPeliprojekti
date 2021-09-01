@@ -24,7 +24,7 @@ public class MenuManager : MonoBehaviour
 
     static AudioSource AudioSrc;
 
-    // Start is called before the first frame update
+    //Ensimmäinen frame asetetaan cam0 mukaisesti
     void Start()
     {
         wooshSound = Resources.Load<AudioClip>("woosh");
@@ -37,7 +37,7 @@ public class MenuManager : MonoBehaviour
         Cursor.visible = true;
         time = PlayerPrefs.GetFloat("Time");
         Debug.Log(time);
-        
+      
     }
 
     // Update is called once per frame
@@ -57,7 +57,7 @@ public class MenuManager : MonoBehaviour
     }
     //Main menu paneelit on jaettu frameihin, niitä aktivoidaan eri kohdissa main menua.
 
-    //Ensimmäinen frame aktivoidaan press any key.
+    //Menu valikko näkymä
     public void Frame1()
     {
         AudioSrc.PlayOneShot(wooshSound);
@@ -67,7 +67,7 @@ public class MenuManager : MonoBehaviour
         frame1_cam.gameObject.SetActive(true);
         frame2_cam.gameObject.SetActive(false);
     }
-    //Frame ykkösestä jos painetaan esc tullaan taas frame nollaan.
+   //Press any key näkymä
     public void Frame0()
     {
         
@@ -76,6 +76,7 @@ public class MenuManager : MonoBehaviour
         frame0_cam.gameObject.SetActive(true);
         frame2_cam.gameObject.SetActive(false);
     }
+    //HighScore Näkymä
     public void Frame2()
     {
         AudioSrc.PlayOneShot(wooshSound);
@@ -84,7 +85,7 @@ public class MenuManager : MonoBehaviour
         frame2_cam.gameObject.SetActive(true);
         frame[1].SetActive(false);
     }
-
+    //Menu valikko viivästys
     IEnumerator Framedelay1()
     {
         frame[1].SetActive(false);
@@ -94,6 +95,7 @@ public class MenuManager : MonoBehaviour
         frame[3].SetActive(true);
         
     }
+    //Press any key näkymä viivästys
     IEnumerator Framedelay0()
     {
         frame[3].SetActive(false);
@@ -103,6 +105,7 @@ public class MenuManager : MonoBehaviour
         frame[0].SetActive(true);
         
     }
+    //Exit näppäin
     public void Quit()
     {
         Application.Quit();
@@ -152,6 +155,7 @@ public class MenuManager : MonoBehaviour
             Debug.Log("File not found");
         }
     }
+    //Enter name näkymä, kun ollaan painettu start button
     public void StartButton()
     {
         AudioSrc.PlayOneShot(wooshSound);

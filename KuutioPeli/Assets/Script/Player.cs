@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     static AudioSource AudioSrc;
     public static AudioClip wooshSound;
     public static AudioClip clicksound;
+    public GameObject worldCube;
+
 
     //Tallennus funktio
     public void SavePlayer()
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
     public void FreezePosition()
     {
         control.enabled = (false);
+        
     }
 
     //Load funktio
@@ -53,12 +56,6 @@ public class Player : MonoBehaviour
             PlayerData data = SaveSystem.LoadPlayer();
             level = data.level;
             health = data.health;
-            /* if (timerGoing == false)
-             {
-                 Timertext.color = Color.white;
-                 timerGoing = true;
-                 StartCoroutine(UpdateTimer());
-             }*/
             timerGoing = false;
             elapsedTime = data.elapsedTime;
             timerGoing = true;
@@ -71,7 +68,11 @@ public class Player : MonoBehaviour
             Debug.Log(transform.position);
             control.enabled = true;
 
-
+            Vector3 CubePos;
+            CubePos.x = data.CubePos[0];
+            CubePos.y = data.CubePos[1];
+            CubePos.z = data.CubePos[2];
+            worldCube.transform.position = CubePos;
         }
         else
         {
@@ -199,12 +200,18 @@ public class Player : MonoBehaviour
         timerGoing = false;
         elapsedTime = data.elapsedTime;
         timerGoing = true;
+
         Vector3 position;
         position.x = data.position[0];
         position.y = data.position[1];
         position.z = data.position[2];
         transform.position = position;
-        Debug.Log(transform.position);
+
+        Vector3 CubePos;
+        CubePos.x = data.CubePos[0];
+        CubePos.y = data.CubePos[1];
+        CubePos.z = data.CubePos[2];
+        worldCube.transform.position = CubePos;
         control.enabled = true;
 
         transition.SetTrigger("End");

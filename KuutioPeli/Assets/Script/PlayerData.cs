@@ -11,6 +11,7 @@ public class PlayerData
     public int health;
     public float[] position;
     public float elapsedTime;
+    public float[] CubePos;
 
 
     public PlayerData(Player player)
@@ -24,6 +25,11 @@ public class PlayerData
         position[0] = player.transform.position.x;
         position[1] = player.transform.position.y;
         position[2] = player.transform.position.z;
+
+        CubePos = new float[3];
+        position[0] = player.worldCube.transform.position.x;
+        position[1] = player.worldCube.transform.position.y;
+        position[2] = player.worldCube.transform.position.z;
     }
     
 }
