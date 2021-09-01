@@ -27,9 +27,9 @@ public class PlayerData
         position[2] = player.transform.position.z;
 
         CubePos = new float[3];
-        position[0] = player.worldCube.transform.position.x;
-        position[1] = player.worldCube.transform.position.y;
-        position[2] = player.worldCube.transform.position.z;
+        CubePos[0] = player.worldCube.transform.position.x;
+        CubePos[1] = player.worldCube.transform.position.y;
+        CubePos[2] = player.worldCube.transform.position.z;
     }
     
 }
