@@ -7,17 +7,18 @@ public class PlayerData
 {
     //Save ja load systeemiin ladattavat muuttujat
 
-   
 
+    public float gravity;
     public float[] position;
     public float elapsedTime;
     public float[] CubePos;
+    public float[] CharPos;
 
 
     public PlayerData(Player player)
     {
 
-
+        gravity = player.gravity;
         elapsedTime=player.elapsedTime;
        
 
@@ -31,6 +32,12 @@ public class PlayerData
         CubePos[1] = player.worldCube.transform.rotation.y;
         CubePos[2] = player.worldCube.transform.rotation.z;
         CubePos[3] = player.worldCube.transform.rotation.w;
+
+        CharPos = new float[4];
+        CharPos[0] = player.transform.rotation.x;
+        CharPos[1] = player.transform.rotation.y;
+        CharPos[2] = player.transform.rotation.z;
+        CharPos[3] = player.transform.rotation.w;
     }
     
 }

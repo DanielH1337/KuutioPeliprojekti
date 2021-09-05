@@ -999,6 +999,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 767458303}
+        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
+        m_MethodName: loadGravity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &347421747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1863,6 +1875,17 @@ CharacterController:
   m_CorrespondingSourceObject: {fileID: 3232591417297112479, guid: fa69d234d6edc9248b58e8bc8594b037, type: 3}
   m_PrefabInstance: {fileID: 807721408}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &767458303 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3232591417297112465, guid: fa69d234d6edc9248b58e8bc8594b037, type: 3}
+  m_PrefabInstance: {fileID: 807721408}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767458300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6055355d308f90547bb1aa82665fe3c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &767458304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1875,6 +1898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef634162d2b5dd547b9130000de8562d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravity: 0
   control: {fileID: 767458302}
   health: 100
   Timertext: {fileID: 73873853}

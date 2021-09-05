@@ -8,6 +8,7 @@ using TMPro;
 using System.IO;
 public class Player : MonoBehaviour
 {
+    public float gravity;
     public CharacterController control;
     public static Player instance;
     public TimeSpan timePlaying;
@@ -53,7 +54,7 @@ public class Player : MonoBehaviour
         {
             control.enabled = false;
             PlayerData data = SaveSystem.LoadPlayer();
-
+            gravity = data.gravity;
             timerGoing = false;
             elapsedTime = data.elapsedTime;
             timerGoing = true;
@@ -65,6 +66,13 @@ public class Player : MonoBehaviour
             position.z = data.position[2];
             transform.position = position;
             Debug.Log(transform.position);
+
+            Quaternion CharPos;
+            CharPos.x = data.CharPos[0];
+            CharPos.y = data.CharPos[1];
+            CharPos.z = data.CharPos[2];
+            CharPos.w = data.CharPos[3];
+            transform.rotation = CharPos;
            
 
             Quaternion CubePos;
@@ -73,7 +81,6 @@ public class Player : MonoBehaviour
             CubePos.z = data.CubePos[2];
             CubePos.w = data.CubePos[3];
             worldCube.transform.rotation= CubePos;
-            Debug.Log(worldCube.transform.position);
             control.enabled = true;
         }
         else
@@ -92,6 +99,8 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        gravity = GetComponent<Movement>().gravity;
+
         //Pausemenu näkyviin ja piiloon painamalla tab näppäintä
         if (buttonclick == 2)
         {
@@ -116,14 +125,15 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        BeginTimer();
+        //gravity=GetComponent<Movement>().gravity;
+        Debug.Log(gravity);
         Debug.Log(worldCube.transform.position);
         clicksound = Resources.Load<AudioClip>("click");
         wooshSound = Resources.Load<AudioClip>("woosh");
         AudioSrc = GetComponent<AudioSource>();
         PauseMenu.SetActive(false);
         Timertext.text = "Time:00:00.00";
-        timerGoing =false;
+        BeginTimer();
         playerName = PlayerPrefs.GetString("name");
     
         pName.text = playerName;
@@ -198,8 +208,9 @@ public class Player : MonoBehaviour
         Time.timeScale = 1;
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(1);
-        
+   
         PlayerData data = SaveSystem.LoadPlayer();
+        gravity = data.gravity;
         timerGoing = false;
         elapsedTime = data.elapsedTime;
         timerGoing = true;
@@ -215,8 +226,14 @@ public class Player : MonoBehaviour
         CubePos.y = data.CubePos[1];
         CubePos.z = data.CubePos[2];
         CubePos.w = data.CubePos[3];
+        Quaternion CharPos;
+        CharPos.x = data.CharPos[0];
+        CharPos.y = data.CharPos[1];
+        CharPos.z = data.CharPos[2];
+        CharPos.w = data.CharPos[3];
+        transform.rotation = CharPos;
         worldCube.transform.rotation = CubePos;
-        Debug.Log(worldCube.transform.position);
+       
 
 
         transition.SetTrigger("End");

@@ -25,7 +25,8 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        PlayerData data = SaveSystem.LoadPlayer();
+        gravity = data.gravity;
     }
 
     // Update is called once per frame
@@ -78,5 +79,10 @@ public class Movement : MonoBehaviour
         gravity = -gravity;
         JumpS = -JumpS;
 
+    }
+    public void loadGravity()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        gravity = data.gravity;
     }
 }
