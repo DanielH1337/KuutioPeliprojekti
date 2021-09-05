@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        //gravity=GetComponent<Movement>().gravity;
+       
         Debug.Log(gravity);
         Debug.Log(worldCube.transform.position);
         clicksound = Resources.Load<AudioClip>("click");
@@ -143,8 +143,6 @@ public class Player : MonoBehaviour
             LoadPlayer();
         }
            
-
-
     }
    
 
@@ -234,8 +232,6 @@ public class Player : MonoBehaviour
         transform.rotation = CharPos;
         worldCube.transform.rotation = CubePos;
        
-
-
         transition.SetTrigger("End");
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

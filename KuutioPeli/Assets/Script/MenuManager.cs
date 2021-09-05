@@ -18,7 +18,7 @@ public class MenuManager : MonoBehaviour
     public GameObject[] frame;
     public GameObject startButton;
     public EventSystem ES;
-    public Animator transition;
+    public Animator transition,BadName;
     public static AudioClip wooshSound;
     public float time;
     public string nimi;
@@ -118,12 +118,14 @@ public class MenuManager : MonoBehaviour
         
         nimi=PlayerPrefs.GetString("name");
 
-        if(nimi.Length!=1)
+        if(nimi.Length!=1&& nimi.Length < 10)
         {
             StartCoroutine(LoadLevel());
         }
+
         else
         {
+            BadName.SetTrigger("BadName");
             Debug.Log("Nimi ei kelpaa");
         }
     }
@@ -182,7 +184,7 @@ public class MenuManager : MonoBehaviour
     }
     public void backButton()
     {
-        AudioSrc.PlayOneShot(wooshSound);
+        //AudioSrc.PlayOneShot(wooshSound);
         frame[2].SetActive(false);
         Frame1();
 

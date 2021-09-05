@@ -18,11 +18,8 @@ public class PlayerName : MonoBehaviour
 
     public void SetName()
     {
-
         saveName = inputText.text;
-              
-        //Debug.Log("Nimi ei kelpaa");
-
+        
         PlayerPrefs.SetString("name", saveName);
         
     }

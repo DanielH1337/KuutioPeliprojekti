@@ -13,10 +13,11 @@ public class HighScoreTable : MonoBehaviour
     private string pname;
     private float time;
     bool nullNameTime;
+   
+
     private void Awake()
     {
- 
-
+        
         entryContainer = transform.Find("highScoreEmptyContainer");
         entryTemplate = entryContainer.Find("highScoreEmptyTemplate");
 
@@ -56,7 +57,6 @@ public class HighScoreTable : MonoBehaviour
         if (highscores == null)
         {
             // There's no stored table, initialize
-            Debug.Log("Initializing table with default values...");
             AddHighscoreEntry(5, "player");
             // Reload
             jsonString = PlayerPrefs.GetString("highscoreTable");
@@ -127,10 +127,23 @@ public class HighScoreTable : MonoBehaviour
         entryTransform.Find("background").gameObject.SetActive(rank % 2 == 1);
         if (rank ==1)
         {
-            entryTransform.Find("posText").GetComponent<TMP_Text>().color = Color.red;
-            entryTransform.Find("scoreText").GetComponent<TMP_Text>().color = Color.red;
-            entryTransform.Find("nameText").GetComponent<TMP_Text>().color = Color.red;
+            entryTransform.Find("posText").GetComponent<TMP_Text>().color = new Color(0.7490196f, 0.6666667f, 0.1529412f, 1f);
+            entryTransform.Find("scoreText").GetComponent<TMP_Text>().color = new Color(0.7490196f, 0.6666667f, 0.1529412f, 1f);
+            entryTransform.Find("nameText").GetComponent<TMP_Text>().color = new Color(0.7490196f, 0.6666667f, 0.1529412f, 1f);
         }
+        /*
+        if (rank == 2)
+        {
+            entryTransform.Find("posText").GetComponent<TMP_Text>().color = new Color(0.7529412f, 0.7529412f, 0.7529412f, 1f);
+            entryTransform.Find("scoreText").GetComponent<TMP_Text>().color = new Color(0.7529412f, 0.7529412f, 0.7529412f, 1f);
+            entryTransform.Find("nameText").GetComponent<TMP_Text>().color = new Color(0.7529412f, 0.7529412f, 0.7529412f, 1f);
+        }
+        if (rank == 3)
+        {
+            entryTransform.Find("posText").GetComponent<TMP_Text>().color = new Color(0.8039216f, 0.4980392f, 0.1960784f, 1f);
+            entryTransform.Find("scoreText").GetComponent<TMP_Text>().color = new Color(0.8039216f, 0.4980392f, 0.1960784f, 1f);
+            entryTransform.Find("nameText").GetComponent<TMP_Text>().color = new Color(0.8039216f, 0.4980392f, 0.1960784f, 1f);
+        }*/
         transformList.Add(entryTransform);
     }
 
@@ -155,6 +168,9 @@ public class HighScoreTable : MonoBehaviour
 
         bool scoreAdded = false;
 
+
+        //K‰yd‰‰n l‰pi tuloksen paikka highscoretaulukossa, ja lis‰t‰‰n se oikeaan paikkaan.
+
         for(int i = 0; i < highscores.highScoreEntryList.Count;i++)
         {
             if (highScoreEntry.score < highscores.highScoreEntryList[i].score)
@@ -164,15 +180,20 @@ public class HighScoreTable : MonoBehaviour
                 break;
             }
         }
+
+        //Jos tulos on huonoin taulukossa, mutta taulukossa on viel‰ vapaita paikkoja lis‰t‰‰n tulos
+
         if (!scoreAdded && highscores.highScoreEntryList.Count < maxScoreBoardEntries)
         {
             highscores.highScoreEntryList.Add(highScoreEntry);
         }
+
+        //Jos taulukon keskelle lis‰tty tulos ylitt‰‰ suurimman sallitun m‰‰r‰n, poistetaan ylitt‰v‰t tulokset.
         if (highscores.highScoreEntryList.Count> maxScoreBoardEntries)
         {
             highscores.highScoreEntryList.RemoveRange(maxScoreBoardEntries, highscores.highScoreEntryList.Count - maxScoreBoardEntries);
         }
-        //tallennetaan highscoret
+        //tallennetaan uusi taulukko
         string json = JsonUtility.ToJson(highscores);
         PlayerPrefs.SetString("highscoreTable", json);
         PlayerPrefs.Save();
