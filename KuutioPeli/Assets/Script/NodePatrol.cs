@@ -15,11 +15,11 @@ public class NodePatrol : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log("Node patrol functions" + current);
+       // Debug.Log("Node patrol functions" + current);
 
         if (chase == false && Loop == false)
         {
-            Debug.Log("happens1");
+           // Debug.Log("happens1");
             if (Vector3.Distance(waypoints[current].transform.position, ToBeMoved.transform.position) < wPradius)
             {
                

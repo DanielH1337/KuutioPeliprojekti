@@ -21,6 +21,8 @@ public class MenuManager : MonoBehaviour
     public Animator transition;
     public static AudioClip wooshSound;
     public float time;
+    public string nimi;
+
 
     static AudioSource AudioSrc;
 
@@ -35,8 +37,7 @@ public class MenuManager : MonoBehaviour
         frame[3].SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        time = PlayerPrefs.GetFloat("Time");
-        Debug.Log(time);
+
       
     }
 
@@ -115,7 +116,16 @@ public class MenuManager : MonoBehaviour
     public void LoadFirstScene()
     {
         
-        StartCoroutine(LoadLevel());
+        nimi=PlayerPrefs.GetString("name");
+
+        if(nimi.Length!=1)
+        {
+            StartCoroutine(LoadLevel());
+        }
+        else
+        {
+            Debug.Log("Nimi ei kelpaa");
+        }
     }
     IEnumerator LoadLevel()
     {
@@ -133,6 +143,12 @@ public class MenuManager : MonoBehaviour
     public void highscoreView()
     {
         frame[3].SetActive(false);
+        StartCoroutine(highScoreViewDelayed());
+    }
+    IEnumerator highScoreViewDelayed()
+    {
+        yield return new WaitForSeconds(2);
+        frame[2].SetActive(true);
     }
     
     //Aloitetaan tallennettu peli.
@@ -164,4 +180,12 @@ public class MenuManager : MonoBehaviour
         frame[0].SetActive(false);
         frame[1].SetActive(true);
     }
+    public void backButton()
+    {
+        AudioSrc.PlayOneShot(wooshSound);
+        frame[2].SetActive(false);
+        Frame1();
+
+    }
+    
 }

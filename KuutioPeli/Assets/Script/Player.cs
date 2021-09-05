@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     public static Player instance;
     public TimeSpan timePlaying;
     public int health=100;
-    public int level;
     public TMP_Text Timertext;
     public float elapsedTime;
     private bool timerGoing;
@@ -54,11 +53,11 @@ public class Player : MonoBehaviour
         {
             control.enabled = false;
             PlayerData data = SaveSystem.LoadPlayer();
-            level = data.level;
-            health = data.health;
+
             timerGoing = false;
             elapsedTime = data.elapsedTime;
             timerGoing = true;
+            Debug.Log(elapsedTime);
 
             Vector3 position;
             position.x = data.position[0];
@@ -66,13 +65,16 @@ public class Player : MonoBehaviour
             position.z = data.position[2];
             transform.position = position;
             Debug.Log(transform.position);
-            control.enabled = true;
+           
 
-            Vector3 CubePos;
+            Quaternion CubePos;
             CubePos.x = data.CubePos[0];
             CubePos.y = data.CubePos[1];
             CubePos.z = data.CubePos[2];
-            worldCube.transform.position = CubePos;
+            CubePos.w = data.CubePos[3];
+            worldCube.transform.rotation= CubePos;
+            Debug.Log(worldCube.transform.position);
+            control.enabled = true;
         }
         else
         {
@@ -86,6 +88,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        
     }
     private void Update()
     {
@@ -113,13 +116,14 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        BeginTimer();
+        Debug.Log(worldCube.transform.position);
         clicksound = Resources.Load<AudioClip>("click");
         wooshSound = Resources.Load<AudioClip>("woosh");
         AudioSrc = GetComponent<AudioSource>();
         PauseMenu.SetActive(false);
         Timertext.text = "Time:00:00.00";
         timerGoing =false;
-        level = SceneManager.GetActiveScene().buildIndex;
         playerName = PlayerPrefs.GetString("name");
     
         pName.text = playerName;
@@ -128,8 +132,9 @@ public class Player : MonoBehaviour
         {
             LoadPlayer();
         }
-        
-        
+           
+
+
     }
    
 
@@ -195,8 +200,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1);
         
         PlayerData data = SaveSystem.LoadPlayer();
-        level = data.level;
-        health = data.health;
         timerGoing = false;
         elapsedTime = data.elapsedTime;
         timerGoing = true;
@@ -206,13 +209,15 @@ public class Player : MonoBehaviour
         position.y = data.position[1];
         position.z = data.position[2];
         transform.position = position;
-
-        Vector3 CubePos;
+        control.enabled = true;
+        Quaternion CubePos;
         CubePos.x = data.CubePos[0];
         CubePos.y = data.CubePos[1];
         CubePos.z = data.CubePos[2];
-        worldCube.transform.position = CubePos;
-        control.enabled = true;
+        CubePos.w = data.CubePos[3];
+        worldCube.transform.rotation = CubePos;
+        Debug.Log(worldCube.transform.position);
+
 
         transition.SetTrigger("End");
         Cursor.lockState = CursorLockMode.Locked;

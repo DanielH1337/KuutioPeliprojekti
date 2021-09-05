@@ -1877,7 +1877,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   control: {fileID: 767458302}
   health: 100
-  level: 0
   Timertext: {fileID: 73873853}
   elapsedTime: 0
   playerName: 

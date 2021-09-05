@@ -54,12 +54,12 @@ public class Movement : MonoBehaviour
 
         if (velocity.y <= maxpeed)
         {
-            Debug.Log("maxpeed reached");
+           // Debug.Log("maxpeed reached");
             velocity.y = maxpeed;
         }
         else if (velocity.y >= -maxpeed)
         {
-            Debug.Log("maxpeed reached");
+            //Debug.Log("maxpeed reached");
             velocity.y = -maxpeed;
         }        
         controller.Move(velocity * Time.deltaTime);
