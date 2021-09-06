@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour
     public float speed = 12f;
     public float gravity = -9.81f;
     public float JumpS = 3;
-
+    public float maxpeed;
     Vector3 velocity;
     public int health = 100;
     public int level = 1;
@@ -25,15 +25,16 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayerData data = SaveSystem.LoadPlayer();
+        gravity = data.gravity;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if(isGrounded && velocity.y < 0)
+        if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
@@ -45,15 +46,43 @@ public class Movement : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
-        if(Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(JumpS * -1 * gravity);
         }
 
         velocity.y += gravity * Time.deltaTime;
 
+        if (velocity.y <= maxpeed)
+        {
+           // Debug.Log("maxpeed reached");
+            velocity.y = maxpeed;
+        }
+        else if (velocity.y >= -maxpeed)
+        {
+            //Debug.Log("maxpeed reached");
+            velocity.y = -maxpeed;
+        }        
         controller.Move(velocity * Time.deltaTime);
-    
+
     }
- 
+
+
+    public void ReverseGravity()
+    {
+        Debug.Log("gravity Reversed");
+        for (float i = 0; i <= 179; i++)
+        {
+            Debug.Log("loop");
+            gameObject.transform.Rotate(1, 0, 0);
+        }
+        gravity = -gravity;
+        JumpS = -JumpS;
+
+    }
+    public void loadGravity()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        gravity = data.gravity;
+    }
 }
