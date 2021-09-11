@@ -548,6 +548,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e99c4ab397e6224082db3690b09eec2, type: 3}
+--- !u!1 &145904842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4715753540480286521, guid: c37bf06ede28ff0488eee84e45e4f419, type: 3}
+  m_PrefabInstance: {fileID: 5598204194236348063}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &145904844
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145904842}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4a8b432cce72f3041aa902df356815df, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &165110965
 GameObject:
   m_ObjectHideFlags: 0
@@ -3948,6 +3972,30 @@ PrefabInstance:
     - target: {fileID: 5181443644823498674, guid: c37bf06ede28ff0488eee84e45e4f419, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348702340892222851, guid: c37bf06ede28ff0488eee84e45e4f419, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348702340892222851, guid: c37bf06ede28ff0488eee84e45e4f419, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348702340892222851, guid: c37bf06ede28ff0488eee84e45e4f419, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348702340892222851, guid: c37bf06ede28ff0488eee84e45e4f419, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348702340892222851, guid: c37bf06ede28ff0488eee84e45e4f419, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348702340892222851, guid: c37bf06ede28ff0488eee84e45e4f419, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5374478175102572914, guid: c37bf06ede28ff0488eee84e45e4f419, type: 3}
       propertyPath: m_Layer
