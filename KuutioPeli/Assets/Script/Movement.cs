@@ -29,6 +29,11 @@ public class Movement : MonoBehaviour
         gravity = data.gravity;
     }
 
+    private void OnDisable()
+    {
+        velocity = Vector3.zero;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -67,15 +72,17 @@ public class Movement : MonoBehaviour
 
     }
 
-
     public void ReverseGravity()
     {
         Debug.Log("gravity Reversed");
+        gameObject.transform.Rotate(180, 0, 0);
+        /*
         for (float i = 0; i <= 179; i++)
         {
             Debug.Log("loop");
             gameObject.transform.Rotate(1, 0, 0);
         }
+        */
         gravity = -gravity;
         JumpS = -JumpS;
 
