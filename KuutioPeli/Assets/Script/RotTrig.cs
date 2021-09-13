@@ -16,13 +16,11 @@ public class RotTrig : MonoBehaviour
     private bool b;
     public Vector3 CubeVects;
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -38,6 +36,8 @@ public class RotTrig : MonoBehaviour
                 if (b == false)
                 {
                     player.GetComponent<Movement>().ReverseGravity();
+                    player.GetComponent<Movement>().enabled = false;
+                    gameObject.GetComponent<NodePatrol>().enabled = true;
                     StartCoroutine(RotateCube());
                 }                                
             }
@@ -51,7 +51,6 @@ public class RotTrig : MonoBehaviour
         b = true;
         for (float i = 0; i <= multiplyBy * rotTarget - 1; i++)
         {
-            gameObject.GetComponent<NodePatrol>().enabled = true;
             //Debug.Log("i");
             rb.transform.Rotate(CubeVects * speed);
             //Debug.Log(rb.position.x);

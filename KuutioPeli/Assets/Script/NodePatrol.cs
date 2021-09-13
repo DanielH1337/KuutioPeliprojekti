@@ -13,7 +13,31 @@ public class NodePatrol : MonoBehaviour
     bool chase = false;
     public GameObject playerobj;
 
-    private void FixedUpdate()
+    private void TryEnableMouseLook(bool b)
+    {
+        MouseLook look = ToBeMoved.GetComponentInChildren<MouseLook>();
+        if (look != null)
+        {
+            look.enabled = b;
+        }
+    }
+
+    private void OnEnable()
+    {
+        TryEnableMouseLook(false);
+    }
+
+    private void OnDisable()
+    {
+        Movement mov = ToBeMoved.GetComponent<Movement>();
+        if (mov != null)
+        {
+            mov.enabled = true;
+        }
+        TryEnableMouseLook(true);
+    }
+
+    private void Update()
     {
        // Debug.Log("Node patrol functions" + current);
 
@@ -22,13 +46,12 @@ public class NodePatrol : MonoBehaviour
            // Debug.Log("happens1");
             if (Vector3.Distance(waypoints[current].transform.position, ToBeMoved.transform.position) < wPradius)
             {
-               
                 current++;
                 if (current == waypoints.Length)
                 {
-                    
                     current = 0;
                     enabled = false;
+                    
                 }
             }
             ToBeMoved.transform.position = Vector3.MoveTowards(ToBeMoved.transform.position, waypoints[current].transform.position, Time.deltaTime * speed);
