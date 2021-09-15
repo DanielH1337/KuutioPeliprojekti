@@ -5,6 +5,7 @@ public class RotTrig : MonoBehaviour
 {
     bool trigger_safety = true;
     public Rigidbody rb;
+    public GameObject player;
     [Header("for 90 turn in 2s = speed=.5 rT=90 multiply=2")]
     public float speed;
     public float rotTarget;
@@ -15,13 +16,11 @@ public class RotTrig : MonoBehaviour
     private bool b;
     public Vector3 CubeVects;
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -36,6 +35,9 @@ public class RotTrig : MonoBehaviour
                 Debug.Log("success");
                 if (b == false)
                 {
+                    player.GetComponent<Movement>().ReverseGravity();
+                    player.GetComponent<Movement>().enabled = false;
+                    gameObject.GetComponent<NodePatrol>().enabled = true;
                     StartCoroutine(RotateCube());
                 }                                
             }
@@ -44,16 +46,17 @@ public class RotTrig : MonoBehaviour
 
     IEnumerator RotateCube()
     {
-        Debug.Log("Rotate ON");
-        Debug.Log(rotTarget);
-        b = true;        
-        for (float i = 0; i <= multiplyBy*rotTarget-1; i++)
+        //Debug.Log("Rotate ON");
+        //Debug.Log(rotTarget);
+        b = true;
+        for (float i = 0; i <= multiplyBy * rotTarget - 1; i++)
         {
-            Debug.Log("i");
+            //Debug.Log("i");
             rb.transform.Rotate(CubeVects * speed);
-            Debug.Log(rb.position.x);
+            //Debug.Log(rb.position.x);
             yield return null;
         }
+        //gameObject.GetComponent<NodePatrol>().enabled = false;
         b = false;
         
         

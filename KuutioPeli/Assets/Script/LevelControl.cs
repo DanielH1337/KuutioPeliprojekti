@@ -8,7 +8,7 @@ public class LevelControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BeginTime();
+       //  BeginTime();
     }
 
     // Update is called once per frame
@@ -19,6 +19,9 @@ public class LevelControl : MonoBehaviour
 
     public void BeginTime()
     {
-        Player.instance.BeginTimer();
+      
+       // Player.instance.BeginTimer();
+
     }
+    
 }
