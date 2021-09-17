@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 
-public class SC_CharacterController : MonoBehaviour
+public class CharacterController : MonoBehaviour
 {
     public float speed = 6.5f;
     public float jump = 7.0f;
@@ -23,8 +23,6 @@ public class SC_CharacterController : MonoBehaviour
     [HideInInspector]
 
     public bool canMove = true;
-
-
 
     void Start()
     {

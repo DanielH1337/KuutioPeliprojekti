@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SC_InventorySystem : MonoBehaviour
+public class Inventory : MonoBehaviour
 {
 
     public Texture crosshairTexture;
-    public SC_CharacterController playerController;
-    public SC_Pickitem[] availableItems; //Prefab list
+    public CharacterController playerController;
+    public Pickitem[] availableItems; //Prefab list
 
     //Free slots
 
@@ -24,7 +24,7 @@ public class SC_InventorySystem : MonoBehaviour
 
 
     //Pickup
-    SC_Pickitem detectedItem;
+    Pickitem detectedItem;
     int detectedItemIndex;
     
 
@@ -143,7 +143,7 @@ public class SC_InventorySystem : MonoBehaviour
             {
                 if ((detectedItem == null || detectedItem.transform != objectHit) && objectHit.GetComponent<SC_Pickitem>() != null)
                 {
-                    SC_Pickitem itemTmp = objectHit.GetComponent<SC_Pickitem>();
+                    Pickitem itemTmp = objectHit.GetComponent<Pickitem>();
 
                     for (int i = 0; i < availableItems.Length; i++)
                     {
