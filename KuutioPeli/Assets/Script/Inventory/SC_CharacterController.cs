@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(UnityEngine.CharacterController))]
 
-public class CharacterController : MonoBehaviour
+public class SC_CharacterController : MonoBehaviour
 {
     public float speed = 6.5f;
     public float jump = 7.0f;
@@ -13,7 +13,7 @@ public class CharacterController : MonoBehaviour
     public float lookspeed = 3.0f;
     public float lookXLimit = 55.0f;
 
-    CharacterController characterController;
+    UnityEngine.CharacterController characterController;
 
     Vector3 moveDirection = Vector3.zero;
 

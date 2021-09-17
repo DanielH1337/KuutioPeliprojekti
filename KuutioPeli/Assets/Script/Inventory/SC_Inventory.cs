@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class SC_Inventory : MonoBehaviour
 {
 
     public Texture crosshairTexture;
-    public CharacterController playerController;
-    public Pickitem[] availableItems; //Prefab list
+    public SC_CharacterController playerController;
+    public SC_Pickitem[] availableItems; //Prefab list
 
     //Free slots
 
@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour
 
 
     //Pickup
-    Pickitem detectedItem;
+    SC_Pickitem detectedItem;
     int detectedItemIndex;
     
 
@@ -143,11 +143,11 @@ public class Inventory : MonoBehaviour
             {
                 if ((detectedItem == null || detectedItem.transform != objectHit) && objectHit.GetComponent<SC_Pickitem>() != null)
                 {
-                    Pickitem itemTmp = objectHit.GetComponent<Pickitem>();
+                    SC_Pickitem itemTmp = objectHit.GetComponent<SC_Pickitem>();
 
                     for (int i = 0; i < availableItems.Length; i++)
                     {
-                        if (availableItems[i].itemName == itemTmp.itemName)
+                        if (availableItems[i].Vasara == itemTmp.Vasara)
                         {
                             detectedItem = itemTmp;
                             detectedItemIndex = i;
@@ -203,7 +203,7 @@ public class Inventory : MonoBehaviour
                             }
                             else
                             {
-                                GUILayout.Box(availableItems[itemSlots[i + a]].itemName, GUILayout.Width(95), GUILayout.Height(95));
+                                GUILayout.Box(availableItems[itemSlots[i + a]].Vasara, GUILayout.Width(95), GUILayout.Height(95));
                             }
                         }
                         else
@@ -249,13 +249,13 @@ public class Inventory : MonoBehaviour
             }
             else
             {
-                GUI.Box(new Rect(Input.mousePosition.x + dragOffset.x, Screen.height - Input.mousePosition.y + dragOffset.y, 95, 95), availableItems[itemSlots[itemIndexToDrag]].itemName);
+                GUI.Box(new Rect(Input.mousePosition.x + dragOffset.x, Screen.height - Input.mousePosition.y + dragOffset.y, 95, 95), availableItems[itemSlots[itemIndexToDrag]].Vasara);
             }
         }
         //Display name while hovering over
         if (hoveringOverIndex > -1 && itemSlots[hoveringOverIndex] > -1 && itemIndexToDrag < 0)
         {
-            GUI.Box(new Rect(Input.mousePosition.x, Screen.height - Input.mousePosition.y - 30, 100, 25), availableItems[itemSlots[hoveringOverIndex]].itemName);
+            GUI.Box(new Rect(Input.mousePosition.x, Screen.height - Input.mousePosition.y - 30, 100, 25), availableItems[itemSlots[hoveringOverIndex]].Vasara);
         }
         if (!showInventory)
         {
@@ -267,9 +267,9 @@ public class Inventory : MonoBehaviour
             if (detectedItem)
             {
                 GUI.color = new Color(0, 0, 0, 0.84f);
-                GUI.Label(new Rect(Screen.width / 2 - 75 + 1, Screen.height / 2 - 50 + 1, 150, 20), "Press 'F' to pick up'" + detectedItem.itemName + "'");
+                GUI.Label(new Rect(Screen.width / 2 - 75 + 1, Screen.height / 2 - 50 + 1, 150, 20), "Press 'F' to pick up'" + detectedItem.Vasara + "'");
                 GUI.color = Color.green;
-                GUI.Label(new Rect(Screen.width / 2 - 75, Screen.height / 2 - 50, 150, 20), "Press 'F' to pick up '" + detectedItem.itemName + "'");
+                GUI.Label(new Rect(Screen.width / 2 - 75, Screen.height / 2 - 50, 150, 20), "Press 'F' to pick up '" + detectedItem.Vasara + "'");
             }
         }
     }
