@@ -36,8 +36,8 @@ public class RotTrig : MonoBehaviour
                 if (b == false)
                 {
                     player.GetComponent<Movement>().ReverseGravity();
-                    player.GetComponent<Movement>().enabled = false;
-                    gameObject.GetComponent<NodePatrol>().enabled = true;
+                    //player.GetComponent<Movement>().enabled = false;
+                    //gameObject.GetComponent<NodePatrol>().enabled = true;
                     StartCoroutine(RotateCube());
                 }                                
             }
