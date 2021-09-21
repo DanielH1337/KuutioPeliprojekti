@@ -6,7 +6,7 @@ public class SC_InventorySystem : MonoBehaviour
 {
     int buttonclicks = 0;
     public Texture crosshairTexture;
-    public SC_CharacterController playerController;
+    public MouseLook playerController;
     public SC_PickItem[] availableItems; //Prefab list
 
     //Free slots

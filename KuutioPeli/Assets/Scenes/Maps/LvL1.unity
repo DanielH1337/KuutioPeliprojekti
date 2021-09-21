@@ -5685,21 +5685,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3232591417297112464, guid: fa69d234d6edc9248b58e8bc8594b037, type: 3}
   m_PrefabInstance: {fileID: 807721408}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &767458306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 767458300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92ddb23a191c2a2479d1801c36f938b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCamera: {fileID: 743929563}
-  MouseSensitivity: 6
-  canMove: 1
 --- !u!114 &767458308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5713,7 +5698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crosshairTexture: {fileID: 2800000, guid: 90f1b03e8489ffa41bfc55f4b0650f3a, type: 3}
-  playerController: {fileID: 767458306}
+  playerController: {fileID: 1548008476}
   availableItems:
   - {fileID: 3011585375753198500, guid: c6a93cd83993da14eb7888d724662503, type: 3}
   - {fileID: 6423498579557825847, guid: b22ca65f58b6dd349bf16950fbaeaff6, type: 3}
@@ -6146,15 +6131,19 @@ PrefabInstance:
     - target: {fileID: 767458304, guid: fa69d234d6edc9248b58e8bc8594b037, type: 3}
       propertyPath: MouseController
       value: 
-      objectReference: {fileID: 767458306}
+      objectReference: {fileID: 0}
     - target: {fileID: 767458304, guid: fa69d234d6edc9248b58e8bc8594b037, type: 3}
       propertyPath: playerController
       value: 
-      objectReference: {fileID: 767458306}
+      objectReference: {fileID: 0}
     - target: {fileID: 3232591416722767090, guid: fa69d234d6edc9248b58e8bc8594b037, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3232591416722767090, guid: fa69d234d6edc9248b58e8bc8594b037, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 743929563}
     - target: {fileID: 3232591416722767090, guid: fa69d234d6edc9248b58e8bc8594b037, type: 3}
       propertyPath: MouseSensitivity
       value: 7
@@ -10627,6 +10616,17 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1548008476 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3232591416722767090, guid: fa69d234d6edc9248b58e8bc8594b037, type: 3}
+  m_PrefabInstance: {fileID: 807721408}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79aa064ec262ce347a2acf4215ff9e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1552392251
 GameObject:
   m_ObjectHideFlags: 0
