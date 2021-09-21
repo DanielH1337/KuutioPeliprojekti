@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SC_PickItem : MonoBehaviour
 {
-    public string itemName = "Cube"; //Unique name for all items
+    public string itemName = "Cylinder"; //Unique name for all items
     public Texture itemPreview;
 
     void Start()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SC_InventorySystem : MonoBehaviour
 {
-
+    int buttonclicks = 0;
     public Texture crosshairTexture;
     public SC_CharacterController playerController;
     public SC_PickItem[] availableItems; //Prefab list
@@ -15,6 +15,7 @@ public class SC_InventorySystem : MonoBehaviour
     bool showInventory = false;
     float windowAnimation = 1;
     float animationTimer = 0;
+
 
 
     //UI Drag
@@ -32,7 +33,7 @@ public class SC_InventorySystem : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-
+        
 
         //Slots
         for (int i = 0; i < itemSlots.Length; i++)
@@ -46,9 +47,24 @@ public class SC_InventorySystem : MonoBehaviour
 
     void Update()
     {
+        if (buttonclicks == 2)
+        {
+            playerController.canMove = true;
+            buttonclicks = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            playerController.canMove = false;
+            buttonclicks += 1;
+        }
+    
+
         //ShowHide
         if (Input.GetKeyDown(KeyCode.Tab))
         {
+            playerController.canMove = false;
+            buttonclicks += 1;
+
             showInventory = !showInventory;
             animationTimer = 0;
             if (showInventory)
@@ -70,12 +86,12 @@ public class SC_InventorySystem : MonoBehaviour
         if (showInventory)
         {
             windowAnimation = Mathf.Lerp(windowAnimation, 0, animationTimer);
-            playerController.canMove = false;
+            //playerController.canMove = false;
         }
         else
         {
             windowAnimation = Mathf.Lerp(windowAnimation, 1f, animationTimer);
-            playerController.canMove = true;
+            //playerController.canMove = true;
         }
 
         //Begin drag
@@ -166,10 +182,10 @@ public class SC_InventorySystem : MonoBehaviour
             detectedItem = null;
         }
     }
-    private void OnGUI()
+    void OnGUI()
     {
         //UI
-        GUI.Label(new Rect(5, 5, 200, 25), "Press 'Tab' to open inventory");
+        GUI.Label(new Rect(5, 40, 200, 25), "Press 'Tab' to open inventory");
 
 
         //Window
