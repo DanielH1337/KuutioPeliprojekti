@@ -163,7 +163,7 @@ public class SC_Inventory : MonoBehaviour
 
                     for (int i = 0; i < availableItems.Length; i++)
                     {
-                        if (availableItems[i].Vasara == itemTmp.Vasara)
+                        if (availableItems[i].itemName == itemTmp.itemName)
                         {
                             detectedItem = itemTmp;
                             detectedItemIndex = i;
@@ -219,7 +219,7 @@ public class SC_Inventory : MonoBehaviour
                             }
                             else
                             {
-                                GUILayout.Box(availableItems[itemSlots[i + a]].Vasara, GUILayout.Width(95), GUILayout.Height(95));
+                                GUILayout.Box(availableItems[itemSlots[i + a]].itemName, GUILayout.Width(95), GUILayout.Height(95));
                             }
                         }
                         else
@@ -265,13 +265,13 @@ public class SC_Inventory : MonoBehaviour
             }
             else
             {
-                GUI.Box(new Rect(Input.mousePosition.x + dragOffset.x, Screen.height - Input.mousePosition.y + dragOffset.y, 95, 95), availableItems[itemSlots[itemIndexToDrag]].Vasara);
+                GUI.Box(new Rect(Input.mousePosition.x + dragOffset.x, Screen.height - Input.mousePosition.y + dragOffset.y, 95, 95), availableItems[itemSlots[itemIndexToDrag]].itemName);
             }
         }
         //Display name while hovering over
         if (hoveringOverIndex > -1 && itemSlots[hoveringOverIndex] > -1 && itemIndexToDrag < 0)
         {
-            GUI.Box(new Rect(Input.mousePosition.x, Screen.height - Input.mousePosition.y - 30, 100, 25), availableItems[itemSlots[hoveringOverIndex]].Vasara);
+            GUI.Box(new Rect(Input.mousePosition.x, Screen.height - Input.mousePosition.y - 30, 100, 25), availableItems[itemSlots[hoveringOverIndex]].itemName);
         }
         if (!showInventory)
         {
@@ -283,9 +283,9 @@ public class SC_Inventory : MonoBehaviour
             if (detectedItem)
             {
                 GUI.color = new Color(0, 0, 0, 0.84f);
-                GUI.Label(new Rect(Screen.width / 2 - 75 + 1, Screen.height / 2 - 50 + 1, 150, 20), "Press 'F' to pick up'" + detectedItem.Vasara + "'");
+                GUI.Label(new Rect(Screen.width / 2 - 75 + 1, Screen.height / 2 - 50 + 1, 150, 20), "Press 'F' to pick up'" + detectedItem.itemName + "'");
                 GUI.color = Color.green;
-                GUI.Label(new Rect(Screen.width / 2 - 75, Screen.height / 2 - 50, 150, 20), "Press 'F' to pick up '" + detectedItem.Vasara + "'");
+                GUI.Label(new Rect(Screen.width / 2 - 75, Screen.height / 2 - 50, 150, 20), "Press 'F' to pick up '" + detectedItem.itemName + "'");
             }
         }
     }
