@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SC_Pickitem : MonoBehaviour
+public class SC_PickItem : MonoBehaviour
 {
-    public string Vasara = "Vasara"; //Unique name for all items
+    public string itemName = "Cylinder"; //Unique name for all items
     public Texture itemPreview;
 
     void Start()

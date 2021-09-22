@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -22,6 +20,8 @@ public class Movement : MonoBehaviour
     public LayerMask groundMask;
     bool isGrounded;
 
+    public Transform cameratrans;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +35,7 @@ public class Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
@@ -47,9 +47,13 @@ public class Movement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * x + transform.forward * z;
+        Vector3 rght = cameratrans.right;
+        Vector3 frwrd = Vector3.Cross(rght, Vector3.up * -gravity);
+        Vector3 move = (rght * (x*5) + frwrd * z) * speed * Time.deltaTime;
 
-        controller.Move(move * speed * Time.deltaTime);
+        //Vector3 move = transform.right * x + transform.forward * z;
+
+        
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -60,29 +64,23 @@ public class Movement : MonoBehaviour
 
         if (velocity.y <= maxpeed)
         {
-           // Debug.Log("maxpeed reached");
+            // Debug.Log("maxpeed reached");
             velocity.y = maxpeed;
         }
         else if (velocity.y >= -maxpeed)
         {
             //Debug.Log("maxpeed reached");
             velocity.y = -maxpeed;
-        }        
-        controller.Move(velocity * Time.deltaTime);
-
+        }
+        //controller.Move(velocity * Time.deltaTime);
+        controller.Move(move + velocity * Time.deltaTime);
     }
 
     public void ReverseGravity()
     {
+
         Debug.Log("gravity Reversed");
-        gameObject.transform.Rotate(180, 0, 0);
-        /*
-        for (float i = 0; i <= 179; i++)
-        {
-            Debug.Log("loop");
-            gameObject.transform.Rotate(1, 0, 0);
-        }
-        */
+        gameObject.GetComponent<RotatePlayer>().enabled = true;
         gravity = -gravity;
         JumpS = -JumpS;
 

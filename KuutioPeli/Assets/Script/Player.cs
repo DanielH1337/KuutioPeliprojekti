@@ -8,6 +8,7 @@ using TMPro;
 using System.IO;
 public class Player : MonoBehaviour
 {
+
     public float gravity;
     public CharacterController control;
     public static Player instance;
@@ -111,7 +112,7 @@ public class Player : MonoBehaviour
             Cursor.visible = false;
             buttonclick = 0;
         }
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             AudioSrc.PlayOneShot(clicksound);
             buttonclick += 1;
@@ -125,7 +126,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-       
+
         Debug.Log(gravity);
         Debug.Log(worldCube.transform.position);
         clicksound = Resources.Load<AudioClip>("click");

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SC_Inventory : MonoBehaviour
 {
-
+    int buttonclicks = 0;
     public Texture crosshairTexture;
-    public SC_CharacterController playerController;
-    public SC_Pickitem[] availableItems; //Prefab list
+    public MouseLook playerController;
+    public SC_PickItem[] availableItems; //Prefab list
 
     //Free slots
 
@@ -17,6 +17,7 @@ public class SC_Inventory : MonoBehaviour
     float animationTimer = 0;
 
 
+
     //UI Drag
     int hoveringOverIndex = -1;
     int itemIndexToDrag = -1;
@@ -24,7 +25,7 @@ public class SC_Inventory : MonoBehaviour
 
 
     //Pickup
-    SC_Pickitem detectedItem;
+    SC_PickItem detectedItem;
     int detectedItemIndex;
     
 
@@ -32,7 +33,7 @@ public class SC_Inventory : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-
+        
 
         //Slots
         for (int i = 0; i < itemSlots.Length; i++)
@@ -46,9 +47,24 @@ public class SC_Inventory : MonoBehaviour
 
     void Update()
     {
+        if (buttonclicks == 2)
+        {
+            playerController.canMove = true;
+            buttonclicks = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            playerController.canMove = false;
+            buttonclicks += 1;
+        }
+    
+
         //ShowHide
         if (Input.GetKeyDown(KeyCode.Tab))
         {
+            playerController.canMove = false;
+            buttonclicks += 1;
+
             showInventory = !showInventory;
             animationTimer = 0;
             if (showInventory)
@@ -70,12 +86,12 @@ public class SC_Inventory : MonoBehaviour
         if (showInventory)
         {
             windowAnimation = Mathf.Lerp(windowAnimation, 0, animationTimer);
-            playerController.canMove = false;
+            //playerController.canMove = false;
         }
         else
         {
             windowAnimation = Mathf.Lerp(windowAnimation, 1f, animationTimer);
-            playerController.canMove = true;
+            //playerController.canMove = true;
         }
 
         //Begin drag
@@ -141,9 +157,9 @@ public class SC_Inventory : MonoBehaviour
 
             if (objectHit.CompareTag("Respawn"))
             {
-                if ((detectedItem == null || detectedItem.transform != objectHit) && objectHit.GetComponent<SC_Pickitem>() != null)
+                if ((detectedItem == null || detectedItem.transform != objectHit) && objectHit.GetComponent<SC_PickItem>() != null)
                 {
-                    SC_Pickitem itemTmp = objectHit.GetComponent<SC_Pickitem>();
+                    SC_PickItem itemTmp = objectHit.GetComponent<SC_PickItem>();
 
                     for (int i = 0; i < availableItems.Length; i++)
                     {
@@ -166,10 +182,10 @@ public class SC_Inventory : MonoBehaviour
             detectedItem = null;
         }
     }
-    private void OnGUI()
+    void OnGUI()
     {
         //UI
-        GUI.Label(new Rect(5, 5, 200, 25), "Press 'Tab' to open inventory");
+        GUI.Label(new Rect(5, 40, 200, 25), "Press 'Tab' to open inventory");
 
 
         //Window
