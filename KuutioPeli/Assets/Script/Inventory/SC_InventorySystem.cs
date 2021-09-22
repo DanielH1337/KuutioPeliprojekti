@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SC_InventorySystem : MonoBehaviour
 {
-    int buttonclicks = 0;
+    int buttonClicks = 0;
     public Texture crosshairTexture;
     public MouseLook playerController;
     public SC_PickItem[] availableItems; //Prefab list
@@ -42,20 +42,23 @@ public class SC_InventorySystem : MonoBehaviour
 
         }
     }
-
+    public void buttonClicksZero()
+    {
+        buttonClicks = 2;
+    }
     
 
     void Update()
     {
-        if (buttonclicks == 2)
+        if (buttonClicks == 2)
         {
             playerController.canMove = true;
-            buttonclicks = 0;
+            buttonClicks = 0;
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             playerController.canMove = false;
-            buttonclicks += 1;
+            buttonClicks += 1;
         }
     
 
@@ -63,7 +66,7 @@ public class SC_InventorySystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             playerController.canMove = false;
-            buttonclicks += 1;
+            buttonClicks += 1;
 
             showInventory = !showInventory;
             animationTimer = 0;
@@ -275,9 +278,12 @@ public class SC_InventorySystem : MonoBehaviour
         }
         if (!showInventory)
         {
-            GUI.color = detectedItem ? Color.green : Color.white;
-            GUI.DrawTexture(new Rect(Screen.width / 2 - 4, Screen.height / 2 - 4, 8, 8), crosshairTexture);
-            GUI.color = Color.white;
+            if (buttonClicks < 1)
+            {
+                GUI.color = detectedItem ? Color.green : Color.white;
+                GUI.DrawTexture(new Rect(Screen.width / 2 - 4, Screen.height / 2 - 4, 8, 8), crosshairTexture);
+                GUI.color = Color.white;
+            }
 
             //Message
             if (detectedItem)

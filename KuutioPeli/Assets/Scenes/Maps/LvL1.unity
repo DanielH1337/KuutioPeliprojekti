@@ -2051,7 +2051,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press Tab key for pause menu
+  m_text: Press Esc key for pause menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b6d7f5dba6d4b2049a1d954f2cc1587d, type: 2}
   m_sharedMaterial: {fileID: -219398267579431622, guid: b6d7f5dba6d4b2049a1d954f2cc1587d, type: 2}
@@ -2946,6 +2946,18 @@ MonoBehaviour:
       - m_Target: {fileID: 767458303}
         m_TargetAssemblyTypeName: Movement, Assembly-CSharp
         m_MethodName: loadGravity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 767458308}
+        m_TargetAssemblyTypeName: SC_InventorySystem, Assembly-CSharp
+        m_MethodName: buttonClicksZero
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9417,6 +9429,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 767458308}
+        m_TargetAssemblyTypeName: SC_InventorySystem, Assembly-CSharp
+        m_MethodName: buttonClicksZero
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1347416319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10197,6 +10221,18 @@ MonoBehaviour:
       - m_Target: {fileID: 767458304}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: LoadMain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 767458308}
+        m_TargetAssemblyTypeName: SC_InventorySystem, Assembly-CSharp
+        m_MethodName: buttonClicksZero
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
