@@ -172,7 +172,7 @@ public class Player : MonoBehaviour
     public void BeginTimer()
     {
         timerGoing = true;
-        elapsedTime = 65f;
+        elapsedTime = 100f;
 
         StartCoroutine(UpdateTimer());
     }
