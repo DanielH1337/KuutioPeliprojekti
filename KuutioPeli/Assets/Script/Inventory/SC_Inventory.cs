@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SC_Inventory : MonoBehaviour
 {
-    int buttonclicks = 0;
+    int buttonClicks = 0;
     public Texture crosshairTexture;
     public MouseLook playerController;
     public SC_PickItem[] availableItems; //Prefab list
 
-    //Free slots
-
+   
+    //Available items slots
     int[] itemSlots = new int [12];
     bool showInventory = false;
     float windowAnimation = 1;
@@ -18,7 +18,7 @@ public class SC_Inventory : MonoBehaviour
 
 
 
-    //UI Drag
+    //Item Pick up
     int hoveringOverIndex = -1;
     int itemIndexToDrag = -1;
     Vector2 dragOffset = Vector2.zero;
@@ -33,37 +33,41 @@ public class SC_Inventory : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        
 
-        //Slots
+
+        //Initialize Item Slots
         for (int i = 0; i < itemSlots.Length; i++)
         {
             itemSlots[i] = -1;
 
         }
     }
-
+    public void buttonClicksZero()
+    {
+        buttonClicks = 2;
+    }
     
 
     void Update()
     {
-        if (buttonclicks == 2)
+        //Show/Hide inventory
+        if (buttonClicks == 2)
         {
             playerController.canMove = true;
-            buttonclicks = 0;
+            buttonClicks = 0;
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             playerController.canMove = false;
-            buttonclicks += 1;
+            buttonClicks += 1;
         }
     
 
-        //ShowHide
+      
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             playerController.canMove = false;
-            buttonclicks += 1;
+            buttonClicks += 1;
 
             showInventory = !showInventory;
             animationTimer = 0;
@@ -94,23 +98,24 @@ public class SC_Inventory : MonoBehaviour
             //playerController.canMove = true;
         }
 
-        //Begin drag
+        //Begin item drag
         if (Input.GetMouseButtonDown(0) && hoveringOverIndex > -1 && itemSlots[hoveringOverIndex] > -1)
         {
             itemIndexToDrag = hoveringOverIndex;
         }
 
-        //Release
+        //Release dragged item
         if (Input.GetMouseButtonUp(0) && itemIndexToDrag > -1)
         {
             if (hoveringOverIndex < 0)
             {
+                //Drop the item outside
                 Instantiate(availableItems[itemSlots[itemIndexToDrag]], playerController.playerCamera.transform.position + (playerController.playerCamera.transform.forward), Quaternion.identity);
                 itemSlots[itemIndexToDrag] = -1;
 ;           }
             else
             {
-                //Swithc items
+                //Switch items between the selected slot and the one we are hovering on
                 int itemIndexImp = itemSlots[itemIndexToDrag];
                 itemSlots[itemIndexToDrag] = itemSlots[hoveringOverIndex];
                 itemSlots[hoveringOverIndex] = itemIndexImp;
@@ -120,12 +125,12 @@ public class SC_Inventory : MonoBehaviour
 
         }
 
-        //Pickup
+        //Item pick up
         if (detectedItem && detectedItemIndex > -1)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                //Add item
+                //Add the item to inventory
                 int slotToAddTo = -1;
 
                 for (int i = 0; i < itemSlots.Length; i++)
@@ -147,6 +152,8 @@ public class SC_Inventory : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //Detect if the Player is looking at any item
+
         RaycastHit hit;
 
         Ray ray = playerController.playerCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
@@ -161,6 +168,8 @@ public class SC_Inventory : MonoBehaviour
                 {
                     SC_PickItem itemTmp = objectHit.GetComponent<SC_PickItem>();
 
+
+                    //Check if item is in availableItemsList
                     for (int i = 0; i < availableItems.Length; i++)
                     {
                         if (availableItems[i].itemName == itemTmp.itemName)
@@ -184,19 +193,19 @@ public class SC_Inventory : MonoBehaviour
     }
     void OnGUI()
     {
-        //UI
+        //Inventory UI
         GUI.Label(new Rect(5, 40, 200, 25), "Press 'Tab' to open inventory");
 
 
-        //Window
+        //Inventory window
 
-    if ( windowAnimation < 1)
+        if ( windowAnimation < 1)
         {
             GUILayout.BeginArea(new Rect(10 - (430 * windowAnimation), Screen.height / 2 - 200, 302, 430), GUI.skin.GetStyle("Box"));
             GUILayout.Label("Inventory", GUILayout.Height(25));
 
             GUILayout.BeginVertical();
-
+            //Display 3 items in a row
             for (int i = 0; i < itemSlots.Length; i +=3)
             {
                 GUILayout.BeginHorizontal();
@@ -224,10 +233,10 @@ public class SC_Inventory : MonoBehaviour
                         }
                         else
                         {
-                            //Empty
+                            //Empty slot
                             GUILayout.Box("", GUILayout.Width(95), GUILayout.Height(95));
                         }
-                        //Detect mouse cursor
+                        //Detect if the mouse cursor is hovering over item
                         Rect lastRect = GUILayoutUtility.GetLastRect();
                         Vector2 eventMousePosition = Event.current.mousePosition;
                         
@@ -256,7 +265,7 @@ public class SC_Inventory : MonoBehaviour
 
 
         }
-        //ItemDrag
+        //Item dragging
         if (itemIndexToDrag > -1)
         {
             if (availableItems[itemSlots[itemIndexToDrag]].itemPreview)
@@ -273,13 +282,18 @@ public class SC_Inventory : MonoBehaviour
         {
             GUI.Box(new Rect(Input.mousePosition.x, Screen.height - Input.mousePosition.y - 30, 100, 25), availableItems[itemSlots[hoveringOverIndex]].itemName);
         }
+     
         if (!showInventory)
         {
-            GUI.color = detectedItem ? Color.green : Color.white;
-            GUI.DrawTexture(new Rect(Screen.width / 2 - 4, Screen.height / 2 - 4, 8, 8), crosshairTexture);
-            GUI.color = Color.white;
+            //Player crosshair display on and off
+            if (buttonClicks < 1)
+            {
+                GUI.color = detectedItem ? Color.green : Color.white;
+                GUI.DrawTexture(new Rect(Screen.width / 2 - 4, Screen.height / 2 - 4, 8, 8), crosshairTexture);
+                GUI.color = Color.white;
+            }
 
-            //Message
+            //Pick up message
             if (detectedItem)
             {
                 GUI.color = new Color(0, 0, 0, 0.84f);

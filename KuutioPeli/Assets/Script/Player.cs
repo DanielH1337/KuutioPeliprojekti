@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public static AudioClip wooshSound;
     public static AudioClip clicksound;
     public GameObject worldCube;
+    public float timer;
 
 
     //Tallennus funktio
@@ -100,6 +101,26 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        if (elapsedTime < 0)
+        {
+            EndTimer();
+            LoadMain();
+        }
+        
+        if (elapsedTime< 60f)
+        {
+            timer += Time.deltaTime;
+            if (timer >= 1)
+            {
+                Timertext.color = Color.red;
+            }
+            if (timer >= 2)
+            {
+                Timertext.color = Color.white;
+                timer = 0;
+            }
+
+        }
         gravity = GetComponent<Movement>().gravity;
 
         //Pausemenu näkyviin ja piiloon painamalla tab näppäintä
@@ -145,12 +166,13 @@ public class Player : MonoBehaviour
         }
            
     }
+
    
 
     public void BeginTimer()
     {
         timerGoing = true;
-        elapsedTime = 0f;
+        elapsedTime = 65f;
 
         StartCoroutine(UpdateTimer());
     }
@@ -159,12 +181,13 @@ public class Player : MonoBehaviour
         timerGoing = false;
         Timertext.color = Color.red;
     }
+   
     //Ajastimen Funktio
     private IEnumerator UpdateTimer()
     {
         while (timerGoing)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime -= Time.deltaTime;
             timePlaying = TimeSpan.FromSeconds(elapsedTime);
             string timePlayinghStr = "Time: " + timePlaying.ToString("mm':'ss");
             Timertext.text = timePlayinghStr;

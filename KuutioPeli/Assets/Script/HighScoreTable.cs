@@ -71,7 +71,7 @@ public class HighScoreTable : MonoBehaviour
         {
             for(int j=i+1;j < highscores.highScoreEntryList.Count; j++)
             {
-                if (highscores.highScoreEntryList[j].score < highscores.highScoreEntryList[i].score)
+                if (highscores.highScoreEntryList[j].score > highscores.highScoreEntryList[i].score)
                 {
                     //Vaihto
                     HighScoreEntry tmp = highscores.highScoreEntryList[i];
@@ -173,7 +173,7 @@ public class HighScoreTable : MonoBehaviour
 
         for(int i = 0; i < highscores.highScoreEntryList.Count;i++)
         {
-            if (highScoreEntry.score < highscores.highScoreEntryList[i].score)
+            if (highScoreEntry.score > highscores.highScoreEntryList[i].score)
             {
                 highscores.highScoreEntryList.Insert(i, highScoreEntry);
                 scoreAdded = true;
