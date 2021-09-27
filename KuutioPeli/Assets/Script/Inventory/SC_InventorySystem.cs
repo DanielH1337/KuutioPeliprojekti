@@ -4,28 +4,27 @@ using UnityEngine;
 
 public class SC_InventorySystem : MonoBehaviour
 {
-    int buttonClicks = 0;
-    public Texture crosshairTexture;
-    public MouseLook playerController;
-    public SC_PickItem[] availableItems; //Prefab list
 
-   
-    //Available items slots
+    public Texture crosshairTexture;
+    public SC_CharacterController playerController;
+    public SC_Pickitem[] availableItems; //Prefab list
+
+    //Free slots
+
     int[] itemSlots = new int [12];
     bool showInventory = false;
     float windowAnimation = 1;
     float animationTimer = 0;
 
 
-
-    //Item Pick up
+    //UI Drag
     int hoveringOverIndex = -1;
     int itemIndexToDrag = -1;
     Vector2 dragOffset = Vector2.zero;
 
 
     //Pickup
-    SC_PickItem detectedItem;
+    SC_Pickitem detectedItem;
     int detectedItemIndex;
     
 
@@ -35,40 +34,21 @@ public class SC_InventorySystem : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
 
-        //Initialize Item Slots
+        //Slots
         for (int i = 0; i < itemSlots.Length; i++)
         {
             itemSlots[i] = -1;
 
         }
     }
-    public void buttonClicksZero()
-    {
-        buttonClicks = 2;
-    }
+
     
 
     void Update()
     {
-        //Show/Hide inventory
-        if (buttonClicks == 2)
-        {
-            playerController.canMove = true;
-            buttonClicks = 0;
-        }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            playerController.canMove = false;
-            buttonClicks += 1;
-        }
-    
-
-      
+        //ShowHide
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            playerController.canMove = false;
-            buttonClicks += 1;
-
             showInventory = !showInventory;
             animationTimer = 0;
             if (showInventory)
@@ -90,32 +70,31 @@ public class SC_InventorySystem : MonoBehaviour
         if (showInventory)
         {
             windowAnimation = Mathf.Lerp(windowAnimation, 0, animationTimer);
-            //playerController.canMove = false;
+            playerController.canMove = false;
         }
         else
         {
             windowAnimation = Mathf.Lerp(windowAnimation, 1f, animationTimer);
-            //playerController.canMove = true;
+            playerController.canMove = true;
         }
 
-        //Begin item drag
+        //Begin drag
         if (Input.GetMouseButtonDown(0) && hoveringOverIndex > -1 && itemSlots[hoveringOverIndex] > -1)
         {
             itemIndexToDrag = hoveringOverIndex;
         }
 
-        //Release dragged item
+        //Release
         if (Input.GetMouseButtonUp(0) && itemIndexToDrag > -1)
         {
             if (hoveringOverIndex < 0)
             {
-                //Drop the item outside
                 Instantiate(availableItems[itemSlots[itemIndexToDrag]], playerController.playerCamera.transform.position + (playerController.playerCamera.transform.forward), Quaternion.identity);
                 itemSlots[itemIndexToDrag] = -1;
 ;           }
             else
             {
-                //Switch items between the selected slot and the one we are hovering on
+                //Swithc items
                 int itemIndexImp = itemSlots[itemIndexToDrag];
                 itemSlots[itemIndexToDrag] = itemSlots[hoveringOverIndex];
                 itemSlots[hoveringOverIndex] = itemIndexImp;
@@ -125,12 +104,12 @@ public class SC_InventorySystem : MonoBehaviour
 
         }
 
-        //Item pick up
+        //Pickup
         if (detectedItem && detectedItemIndex > -1)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                //Add the item to inventory
+                //Add item
                 int slotToAddTo = -1;
 
                 for (int i = 0; i < itemSlots.Length; i++)
@@ -152,8 +131,6 @@ public class SC_InventorySystem : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Detect if the Player is looking at any item
-
         RaycastHit hit;
 
         Ray ray = playerController.playerCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
@@ -164,12 +141,10 @@ public class SC_InventorySystem : MonoBehaviour
 
             if (objectHit.CompareTag("Respawn"))
             {
-                if ((detectedItem == null || detectedItem.transform != objectHit) && objectHit.GetComponent<SC_PickItem>() != null)
+                if ((detectedItem == null || detectedItem.transform != objectHit) && objectHit.GetComponent<SC_Pickitem>() != null)
                 {
-                    SC_PickItem itemTmp = objectHit.GetComponent<SC_PickItem>();
+                    SC_Pickitem itemTmp = objectHit.GetComponent<SC_Pickitem>();
 
-
-                    //Check if item is in availableItemsList
                     for (int i = 0; i < availableItems.Length; i++)
                     {
                         if (availableItems[i].itemName == itemTmp.itemName)
@@ -191,21 +166,21 @@ public class SC_InventorySystem : MonoBehaviour
             detectedItem = null;
         }
     }
-    void OnGUI()
+    private void OnGUI()
     {
-        //Inventory UI
-        GUI.Label(new Rect(5, 40, 200, 25), "Press 'Tab' to open inventory");
+        //UI
+        GUI.Label(new Rect(5, 5, 200, 25), "Press 'Tab' to open inventory");
 
 
-        //Inventory window
+        //Window
 
-        if ( windowAnimation < 1)
+    if ( windowAnimation < 1)
         {
             GUILayout.BeginArea(new Rect(10 - (430 * windowAnimation), Screen.height / 2 - 200, 302, 430), GUI.skin.GetStyle("Box"));
             GUILayout.Label("Inventory", GUILayout.Height(25));
 
             GUILayout.BeginVertical();
-            //Display 3 items in a row
+
             for (int i = 0; i < itemSlots.Length; i +=3)
             {
                 GUILayout.BeginHorizontal();
@@ -233,10 +208,10 @@ public class SC_InventorySystem : MonoBehaviour
                         }
                         else
                         {
-                            //Empty slot
+                            //Empty
                             GUILayout.Box("", GUILayout.Width(95), GUILayout.Height(95));
                         }
-                        //Detect if the mouse cursor is hovering over item
+                        //Detect mouse cursor
                         Rect lastRect = GUILayoutUtility.GetLastRect();
                         Vector2 eventMousePosition = Event.current.mousePosition;
                         
@@ -265,7 +240,7 @@ public class SC_InventorySystem : MonoBehaviour
 
 
         }
-        //Item dragging
+        //ItemDrag
         if (itemIndexToDrag > -1)
         {
             if (availableItems[itemSlots[itemIndexToDrag]].itemPreview)
@@ -282,18 +257,13 @@ public class SC_InventorySystem : MonoBehaviour
         {
             GUI.Box(new Rect(Input.mousePosition.x, Screen.height - Input.mousePosition.y - 30, 100, 25), availableItems[itemSlots[hoveringOverIndex]].itemName);
         }
-     
         if (!showInventory)
         {
-            //Player crosshair display on and off
-            if (buttonClicks < 1)
-            {
-                GUI.color = detectedItem ? Color.green : Color.white;
-                GUI.DrawTexture(new Rect(Screen.width / 2 - 4, Screen.height / 2 - 4, 8, 8), crosshairTexture);
-                GUI.color = Color.white;
-            }
+            GUI.color = detectedItem ? Color.green : Color.white;
+            GUI.DrawTexture(new Rect(Screen.width / 2 - 4, Screen.height / 2 - 4, 8, 8), crosshairTexture);
+            GUI.color = Color.white;
 
-            //Pick up message
+            //Message
             if (detectedItem)
             {
                 GUI.color = new Color(0, 0, 0, 0.84f);

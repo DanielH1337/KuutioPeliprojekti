@@ -4,34 +4,46 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-    public Camera playerCamera;
-    public bool canMove=true;
     public float MouseSensitivity = 100f;
-    //public Transform playerBody;
+    int buttonclicks;
+    public Transform playerBody;
     float xRotation = 0f;
-    float yRotation = 0f;
-        
+
+    // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
-        
-    void FixedUpdate()
+
+    // Update is called once per frame
+    void Update()
     {
-        if (canMove)
+        
+        float mouseX = Input.GetAxisRaw("Mouse X") * MouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * MouseSensitivity * Time.deltaTime;
+
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        playerBody.Rotate(Vector3.up * mouseX);
+
+
+
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-
-            float mouseX = Input.GetAxisRaw("Mouse X") * MouseSensitivity;
-            float mouseY = Input.GetAxisRaw("Mouse Y") * MouseSensitivity;
-
-            xRotation -= mouseY;
-            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-            yRotation -= -mouseX;
-            // yRotation = Mathf.Clamp(yRotation, 360, 360);
-
-            transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+            buttonclicks += 1;
+        
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            if (buttonclicks == 2)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                buttonclicks = 0;
+            }
+            
         }
 
-        //playerBody.Rotate(Vector3.up * mouseX);      
     }
 }

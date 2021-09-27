@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9133844540907242791}
   - component: {fileID: 6256248551741131081}
   - component: {fileID: 6367213613609338586}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 9208603536613620296}
   - component: {fileID: 64053529978249004}
   - component: {fileID: 4566524790559470403}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 4451313436918918746}
   - component: {fileID: 2128940717093460268}
   - component: {fileID: 8835327766036744637}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 9023603982033184808}
   - component: {fileID: 2120813679745771275}
   - component: {fileID: 1106769886867325618}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 1243452272033057983}
   - component: {fileID: 8536339118421441397}
   - component: {fileID: 9191879742418382229}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,7 +487,7 @@ GameObject:
   - component: {fileID: 3876367571321499687}
   - component: {fileID: 139153900770260479}
   - component: {fileID: 2439251789706694016}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -579,7 +579,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7212707684107685810}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Pyramid-stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 3734501837014381221}
   - component: {fileID: 4923214251157496741}
   - component: {fileID: 6805940309388055511}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -704,26 +704,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &542615060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6532098688861080036}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0060fdcaeb3de6489a25ddc1a64a768, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ToBeMoved: {fileID: 0}
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  ChaseFunc: 0
-  Loop: 0
-  speed: 20
-  playerobj: {fileID: 0}
 --- !u!1 &7614558947381304548
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,7 +716,7 @@ GameObject:
   - component: {fileID: 5265714300612964091}
   - component: {fileID: 5573699849191197373}
   - component: {fileID: 4534162827268487425}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -874,33 +854,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sphere
       objectReference: {fileID: 0}
-    - target: {fileID: 5500472369378116580, guid: d7d583ecf01142e47bbd9de4fef00b87, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5500472369378116606, guid: d7d583ecf01142e47bbd9de4fef00b87, type: 3}
-      propertyPath: speed
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5500472369378116606, guid: d7d583ecf01142e47bbd9de4fef00b87, type: 3}
-      propertyPath: rotTarget
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 5500472369378116606, guid: d7d583ecf01142e47bbd9de4fef00b87, type: 3}
-      propertyPath: multiplyBy
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5500472369378116606, guid: d7d583ecf01142e47bbd9de4fef00b87, type: 3}
-      propertyPath: CubeVects.x
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7d583ecf01142e47bbd9de4fef00b87, type: 3}
---- !u!1 &6532098688861080036 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5500472369378116580, guid: d7d583ecf01142e47bbd9de4fef00b87, type: 3}
-  m_PrefabInstance: {fileID: 1653726356636060160}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6532098688861080035 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5500472369378116579, guid: d7d583ecf01142e47bbd9de4fef00b87, type: 3}
