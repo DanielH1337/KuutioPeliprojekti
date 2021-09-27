@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SC_InventorySystem : MonoBehaviour
+public class SC_Inventory : MonoBehaviour
 {
     int buttonClicks = 0;
     public Texture crosshairTexture;
