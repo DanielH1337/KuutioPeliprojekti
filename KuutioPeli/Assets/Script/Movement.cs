@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     bool isGrounded;
-
+    public bool GravityBool = true;
     public Transform cameratrans;
 
     // Start is called before the first frame update
@@ -78,7 +78,7 @@ public class Movement : MonoBehaviour
 
     public void ReverseGravity()
     {
-
+        GravityBool = !GravityBool;
         Debug.Log("gravity Reversed");
         gameObject.GetComponent<RotatePlayer>().enabled = true;
         gravity = -gravity;
