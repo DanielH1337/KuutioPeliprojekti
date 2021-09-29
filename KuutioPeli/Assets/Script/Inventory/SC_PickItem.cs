@@ -16,7 +16,18 @@ public class SC_PickItem : MonoBehaviour
         gameObject.tag = "Respawn";
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
-
+      //  if (PlayerPrefs.HasKey("flip"))
+     //   {
+        //    flip = (PlayerPrefs.GetInt("flip") != 0);
+      //  }
+    }
+    public void saveitemGravity()
+    {
+        PlayerPrefs.SetInt("flip", (flip ? 1 : 0));
+    }
+    public void loaditemGravity()
+    {
+        flip = (PlayerPrefs.GetInt("flip") != 0);
     }
   
 

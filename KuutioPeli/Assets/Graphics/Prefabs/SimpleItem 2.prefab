@@ -63,6 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cylinder
   itemPreview: {fileID: 2800000, guid: 21f6969f8f9fe2f4f8d2a583dbc97bd0, type: 3}
+  flip: 0
 --- !u!1 &6615991407276725224
 GameObject:
   m_ObjectHideFlags: 0
