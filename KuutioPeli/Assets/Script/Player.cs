@@ -167,8 +167,6 @@ public class Player : MonoBehaviour
            
     }
 
-   
-
     public void BeginTimer()
     {
         timerGoing = true;
@@ -262,6 +260,4 @@ public class Player : MonoBehaviour
 
     }
 
-    
- 
 }
