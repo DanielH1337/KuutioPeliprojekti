@@ -167,12 +167,10 @@ public class Player : MonoBehaviour
            
     }
 
-   
-
     public void BeginTimer()
     {
         timerGoing = true;
-        elapsedTime = 65f;
+        elapsedTime = 200f;
 
         StartCoroutine(UpdateTimer());
     }
@@ -182,7 +180,7 @@ public class Player : MonoBehaviour
         Timertext.color = Color.red;
     }
    
-    //Ajastimen Funktio
+    //Timer function for updating timer
     private IEnumerator UpdateTimer()
     {
         while (timerGoing)
@@ -262,6 +260,4 @@ public class Player : MonoBehaviour
 
     }
 
-    
- 
 }

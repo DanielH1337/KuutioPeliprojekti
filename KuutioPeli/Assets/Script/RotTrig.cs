@@ -15,6 +15,7 @@ public class RotTrig : MonoBehaviour
     float z;   
     private bool b;
     public Vector3 CubeVects;
+    public int buttonclicks=0;
 
     void Start()
     {
@@ -23,7 +24,7 @@ public class RotTrig : MonoBehaviour
 
     void Update()
     {
-
+        
     }
 
     private void OnTriggerStay(Collider other)
@@ -32,9 +33,11 @@ public class RotTrig : MonoBehaviour
         {
             if (Input.GetKey("e"))
             {
-                Debug.Log("success");
+          
+                //Debug.Log("success");
                 if (b == false)
                 {
+                    
                     player.GetComponent<Movement>().ReverseGravity();
                     //player.GetComponent<Movement>().enabled = false;
                     //gameObject.GetComponent<NodePatrol>().enabled = true;
@@ -56,6 +59,7 @@ public class RotTrig : MonoBehaviour
             //Debug.Log(rb.position.x);
             yield return null;
         }
+      
         //gameObject.GetComponent<NodePatrol>().enabled = false;
         b = false;
         
