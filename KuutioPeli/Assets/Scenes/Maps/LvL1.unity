@@ -4084,31 +4084,6 @@ Transform:
   m_Father: {fileID: 1111461399}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &540970026 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5500472369378116580, guid: d7d583ecf01142e47bbd9de4fef00b87, type: 3}
-  m_PrefabInstance: {fileID: 652194214}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &540970028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 540970026}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0060fdcaeb3de6489a25ddc1a64a768, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ToBeMoved: {fileID: 767458305}
-  waypoints:
-  - {fileID: 540970026}
-  - {fileID: 534555608}
-  ChaseFunc: 0
-  Loop: 0
-  speed: 7
-  playerobj: {fileID: 767458300}
 --- !u!1 &541883612
 GameObject:
   m_ObjectHideFlags: 0
@@ -6980,31 +6955,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &897463103 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5500472369378116580, guid: d7d583ecf01142e47bbd9de4fef00b87, type: 3}
-  m_PrefabInstance: {fileID: 484251742}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &897463105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 897463103}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0060fdcaeb3de6489a25ddc1a64a768, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ToBeMoved: {fileID: 767458305}
-  waypoints:
-  - {fileID: 897463103}
-  - {fileID: 2031600323}
-  ChaseFunc: 0
-  Loop: 0
-  speed: 7
-  playerobj: {fileID: 767458300}
 --- !u!1 &916828179
 GameObject:
   m_ObjectHideFlags: 0
@@ -11039,31 +10989,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &1580785280 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5500472369378116580, guid: d7d583ecf01142e47bbd9de4fef00b87, type: 3}
-  m_PrefabInstance: {fileID: 1732349697}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1580785282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1580785280}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0060fdcaeb3de6489a25ddc1a64a768, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ToBeMoved: {fileID: 767458305}
-  waypoints:
-  - {fileID: 1580785280}
-  - {fileID: 1650342722}
-  ChaseFunc: 0
-  Loop: 0
-  speed: 7
-  playerobj: {fileID: 767458300}
 --- !u!1 &1591433446 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3015955182288453298, guid: c37bf06ede28ff0488eee84e45e4f419, type: 3}
@@ -13599,31 +13524,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &1969360038 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5500472369378116580, guid: d7d583ecf01142e47bbd9de4fef00b87, type: 3}
-  m_PrefabInstance: {fileID: 504369926}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1969360040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1969360038}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0060fdcaeb3de6489a25ddc1a64a768, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ToBeMoved: {fileID: 767458305}
-  waypoints:
-  - {fileID: 1969360038}
-  - {fileID: 717686346}
-  ChaseFunc: 0
-  Loop: 0
-  speed: 7
-  playerobj: {fileID: 767458300}
 --- !u!1 &1975623629
 GameObject:
   m_ObjectHideFlags: 0
@@ -15937,6 +15837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1663653639244843104, guid: c37bf06ede28ff0488eee84e45e4f419, type: 3}
+    - {fileID: 5598204193395582869, guid: c37bf06ede28ff0488eee84e45e4f419, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c37bf06ede28ff0488eee84e45e4f419, type: 3}
 --- !u!4 &5598204194236348064 stripped
 Transform:
