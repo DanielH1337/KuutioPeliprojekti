@@ -114,6 +114,7 @@ public class NodePatrol : MonoBehaviour
                 Debug.Log(hitInfo.collider);
                 if (hitInfo.collider == playerobj.GetComponent<Collider>())
                 {
+                    Debug.Log(hitInfo);
                     chase = true;
                 }
             }
