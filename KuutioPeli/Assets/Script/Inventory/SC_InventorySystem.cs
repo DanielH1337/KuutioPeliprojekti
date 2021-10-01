@@ -62,8 +62,6 @@ public class SC_InventorySystem : MonoBehaviour
             buttonClicks += 1;
         }
     
-
-      
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             playerController.canMove = false;
