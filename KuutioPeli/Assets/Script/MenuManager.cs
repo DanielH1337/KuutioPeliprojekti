@@ -18,13 +18,15 @@ public class MenuManager : MonoBehaviour
     public GameObject[] frame;
     public GameObject startButton;
     public EventSystem ES;
-    public Animator transition;
+    public Animator transition,BadName;
     public static AudioClip wooshSound;
     public float time;
+    public string nimi;
+
 
     static AudioSource AudioSrc;
 
-    // Start is called before the first frame update
+    //Ensimmäinen frame asetetaan cam0 mukaisesti
     void Start()
     {
         wooshSound = Resources.Load<AudioClip>("woosh");
@@ -35,9 +37,8 @@ public class MenuManager : MonoBehaviour
         frame[3].SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        time = PlayerPrefs.GetFloat("Time");
-        Debug.Log(time);
-        
+
+      
     }
 
     // Update is called once per frame
@@ -57,7 +58,7 @@ public class MenuManager : MonoBehaviour
     }
     //Main menu paneelit on jaettu frameihin, niitä aktivoidaan eri kohdissa main menua.
 
-    //Ensimmäinen frame aktivoidaan press any key.
+    //Menu valikko näkymä
     public void Frame1()
     {
         AudioSrc.PlayOneShot(wooshSound);
@@ -67,7 +68,7 @@ public class MenuManager : MonoBehaviour
         frame1_cam.gameObject.SetActive(true);
         frame2_cam.gameObject.SetActive(false);
     }
-    //Frame ykkösestä jos painetaan esc tullaan taas frame nollaan.
+   //Press any key näkymä
     public void Frame0()
     {
         
@@ -76,6 +77,7 @@ public class MenuManager : MonoBehaviour
         frame0_cam.gameObject.SetActive(true);
         frame2_cam.gameObject.SetActive(false);
     }
+    //HighScore Näkymä
     public void Frame2()
     {
         AudioSrc.PlayOneShot(wooshSound);
@@ -84,7 +86,7 @@ public class MenuManager : MonoBehaviour
         frame2_cam.gameObject.SetActive(true);
         frame[1].SetActive(false);
     }
-
+    //Menu valikko viivästys
     IEnumerator Framedelay1()
     {
         frame[1].SetActive(false);
@@ -94,6 +96,7 @@ public class MenuManager : MonoBehaviour
         frame[3].SetActive(true);
         
     }
+    //Press any key näkymä viivästys
     IEnumerator Framedelay0()
     {
         frame[3].SetActive(false);
@@ -103,6 +106,7 @@ public class MenuManager : MonoBehaviour
         frame[0].SetActive(true);
         
     }
+    //Exit näppäin
     public void Quit()
     {
         Application.Quit();
@@ -112,7 +116,18 @@ public class MenuManager : MonoBehaviour
     public void LoadFirstScene()
     {
         
-        StartCoroutine(LoadLevel());
+        nimi=PlayerPrefs.GetString("name");
+
+        if(nimi.Length!=1&& nimi.Length < 14)
+        {
+            StartCoroutine(LoadLevel());
+        }
+
+        else
+        {
+            BadName.SetTrigger("BadName");
+            Debug.Log("Nimi ei kelpaa");
+        }
     }
     IEnumerator LoadLevel()
     {
@@ -123,13 +138,19 @@ public class MenuManager : MonoBehaviour
         {
             SaveSystem.Deleteall();
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(1);
     }
     
     public void highscoreView()
     {
         frame[3].SetActive(false);
+        StartCoroutine(highScoreViewDelayed());
+    }
+    IEnumerator highScoreViewDelayed()
+    {
+        yield return new WaitForSeconds(2);
+        frame[2].SetActive(true);
     }
     
     //Aloitetaan tallennettu peli.
@@ -144,7 +165,7 @@ public class MenuManager : MonoBehaviour
         {
             AudioSrc.PlayOneShot(wooshSound);
             transition.SetTrigger("Start");
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             SceneManager.LoadScene(1);
         }
         else
@@ -152,6 +173,7 @@ public class MenuManager : MonoBehaviour
             Debug.Log("File not found");
         }
     }
+    //Enter name näkymä, kun ollaan painettu start button
     public void StartButton()
     {
         AudioSrc.PlayOneShot(wooshSound);
@@ -160,4 +182,12 @@ public class MenuManager : MonoBehaviour
         frame[0].SetActive(false);
         frame[1].SetActive(true);
     }
+    public void backButton()
+    {
+        //AudioSrc.PlayOneShot(wooshSound);
+        frame[2].SetActive(false);
+        Frame1();
+
+    }
+    
 }
