@@ -58,7 +58,7 @@ public class NodePatrol : MonoBehaviour
         }
         if (chase == false && Loop == true)
         {
-            Debug.Log("happens2");
+            //Debug.Log("happens2");
             if (Vector3.Distance(waypoints[current].transform.position, ToBeMoved.transform.position) < wPradius)
             {
                 current++;
@@ -107,14 +107,18 @@ public class NodePatrol : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (other.tag == "deathtrig")
+        {
+            return;
+        }
         if (other.gameObject.CompareTag("Player"))
         {
             if(Physics.Linecast(transform.position, playerobj.transform.position, out RaycastHit hitInfo))
             {
-                Debug.Log(hitInfo.collider);
+                //Debug.Log(hitInfo.collider);
                 if (hitInfo.collider == playerobj.GetComponent<Collider>())
                 {
-                    Debug.Log(hitInfo);
+                    //Debug.Log(hitInfo);
                     chase = true;
                 }
             }
@@ -125,6 +129,10 @@ public class NodePatrol : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.tag == "deathtrig")
+        {
+            return;
+        }
         if (other.gameObject.CompareTag("Player"))
         {
             chase = false;

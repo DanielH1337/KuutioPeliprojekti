@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     public string playerName;
     public TMP_Text pName;
     public Animator transition,savedgame;
-    public GameObject PauseMenu,TabKeyText;
+    public GameObject PauseMenu,TabKeyText,YouDie;
     private int buttonclick=0;
     static AudioSource AudioSrc;
     public static AudioClip wooshSound;
@@ -153,6 +153,7 @@ public class Player : MonoBehaviour
         clicksound = Resources.Load<AudioClip>("click");
         wooshSound = Resources.Load<AudioClip>("woosh");
         AudioSrc = GetComponent<AudioSource>();
+        YouDie.SetActive(false);
         PauseMenu.SetActive(false);
         Timertext.text = "Time:00:00.00";
         BeginTimer();
