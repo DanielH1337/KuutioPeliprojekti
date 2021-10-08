@@ -118,7 +118,7 @@ public class MenuManager : MonoBehaviour
         
         nimi=PlayerPrefs.GetString("name");
 
-        if(nimi.Length!=1&& nimi.Length < 10)
+        if(nimi.Length!=1&& nimi.Length < 14)
         {
             StartCoroutine(LoadLevel());
         }

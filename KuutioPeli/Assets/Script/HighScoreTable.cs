@@ -31,7 +31,7 @@ public class HighScoreTable : MonoBehaviour
         time = PlayerPrefs.GetFloat("Time");
         Debug.Log(pname);
         Debug.Log(time);
-
+        //If main menu is pressed from gameplay window time will not be visible in highscores
         if (time == 0)
         {
             nullNameTime = false;
@@ -123,7 +123,7 @@ public class HighScoreTable : MonoBehaviour
         string name = highScoreEntry.name;
         entryTransform.Find("nameText").GetComponent<TMP_Text>().text = name;
         
-
+        //Gold color for first place player
         entryTransform.Find("background").gameObject.SetActive(rank % 2 == 1);
         if (rank ==1)
         {
@@ -131,6 +131,7 @@ public class HighScoreTable : MonoBehaviour
             entryTransform.Find("scoreText").GetComponent<TMP_Text>().color = new Color(0.7490196f, 0.6666667f, 0.1529412f, 1f);
             entryTransform.Find("nameText").GetComponent<TMP_Text>().color = new Color(0.7490196f, 0.6666667f, 0.1529412f, 1f);
         }
+        //Silver and Bronce color for 2nd and 3rd place players. Remove comments and it works.
         /*
         if (rank == 2)
         {
@@ -193,7 +194,7 @@ public class HighScoreTable : MonoBehaviour
         {
             highscores.highScoreEntryList.RemoveRange(maxScoreBoardEntries, highscores.highScoreEntryList.Count - maxScoreBoardEntries);
         }
-        //tallennetaan uusi taulukko
+        //Saving a new table in json form in Unitys playerprefs saving system.
         string json = JsonUtility.ToJson(highscores);
         PlayerPrefs.SetString("highscoreTable", json);
         PlayerPrefs.Save();
