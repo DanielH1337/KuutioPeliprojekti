@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 1892940735699249492}
   m_Layer: 0
   m_Name: controller
-  m_TagString: Untagged
+  m_TagString: coll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 8081761771660004507}
   m_Layer: 0
   m_Name: deathtrig
-  m_TagString: Untagged
+  m_TagString: deathtrig
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -5426,7 +5426,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 68bd2b1d23674fe41a88ab04e223997d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.033
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6266,6 +6266,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 767458301, guid: fa69d234d6edc9248b58e8bc8594b037, type: 3}
+      propertyPath: m_Volume
+      value: 0.151
+      objectReference: {fileID: 0}
     - target: {fileID: 767458304, guid: fa69d234d6edc9248b58e8bc8594b037, type: 3}
       propertyPath: pName
       value: 
@@ -6298,6 +6302,10 @@ PrefabInstance:
       propertyPath: transition
       value: 
       objectReference: {fileID: 1802151458}
+    - target: {fileID: 3232591416722767090, guid: fa69d234d6edc9248b58e8bc8594b037, type: 3}
+      propertyPath: MouseSensitivity
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3232591417297112464, guid: fa69d234d6edc9248b58e8bc8594b037, type: 3}
       propertyPath: m_RootOrder
       value: 1

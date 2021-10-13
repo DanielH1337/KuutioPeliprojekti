@@ -20,8 +20,8 @@ public class GlitchEffect : MonoBehaviour
 	public Shader Shader;
 	[Header("Glitch Intensity")]
 
-	[Range(0, 1)]
-	public float intensity;
+	//[Range(0, 1)]
+	public float intensity=0f;
 
 	[Range(0, 1)]
 	public float flipIntensity;
