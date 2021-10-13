@@ -41,13 +41,10 @@ public class SC_PickItem : MonoBehaviour
     {
         if (flip==true)
         {
-          
             rb.AddForce(Vector3.up * 9.81f, ForceMode.Acceleration);
-           
         }
        if (flip==false)
         {
-            
             rb.AddForce(Vector3.down * 9.81f, ForceMode.Acceleration);
         }
 

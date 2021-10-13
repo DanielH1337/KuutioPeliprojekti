@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     public static AudioClip clicksound;
     public GameObject worldCube;
     public float timer;
+    public float intensity;
+   
 
 
     //Tallennus funktio
@@ -103,7 +105,13 @@ public class Player : MonoBehaviour
     {
         if (elapsedTime < 0)
         {
+            StartCoroutine(youDie());
+        }
+        IEnumerator youDie()
+        {
+            YouDie.SetActive(true);
             EndTimer();
+            yield return new WaitForSeconds(2);
             LoadMain();
         }
         
@@ -147,7 +155,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-
+        GameObject.FindWithTag("Player");
         Debug.Log(gravity);
         Debug.Log(worldCube.transform.position);
         clicksound = Resources.Load<AudioClip>("click");
@@ -171,7 +179,7 @@ public class Player : MonoBehaviour
     public void BeginTimer()
     {
         timerGoing = true;
-        elapsedTime = 200f;
+        elapsedTime = 100f;
 
         StartCoroutine(UpdateTimer());
     }
@@ -190,7 +198,7 @@ public class Player : MonoBehaviour
             timePlaying = TimeSpan.FromSeconds(elapsedTime);
             string timePlayinghStr = "Time: " + timePlaying.ToString("mm':'ss");
             Timertext.text = timePlayinghStr;
-
+            //GlitchEffect.flipIntensity = 1f / elapsedTime;
             yield return null;
         }
     }
