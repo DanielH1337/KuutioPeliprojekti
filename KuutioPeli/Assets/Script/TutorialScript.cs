@@ -10,6 +10,10 @@ public class TutorialScript : MonoBehaviour
     static AudioSource AudioSrc;
     public Animator transition;
     // Start is called before the first frame update
+
+
+
+    // Adding tutorial to frames, where every frame shown and hidden after button press.
     void Start()
     {
         AudioSrc = GetComponent<AudioSource>();
@@ -46,6 +50,7 @@ public class TutorialScript : MonoBehaviour
     }
     public void startGameSwitch()
     {
+        //Starts the game
         AudioSrc.PlayOneShot(wooshSound);
         StartCoroutine(startGame());
     }
