@@ -9,7 +9,7 @@ public class TutorialScript : MonoBehaviour
     public GameObject[] frames;
     static AudioSource AudioSrc;
     public Animator transition;
-    // Start is called before the first frame update
+
 
 
 
@@ -61,9 +61,6 @@ public class TutorialScript : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
+ 
 }

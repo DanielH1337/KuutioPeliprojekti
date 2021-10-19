@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
     }
     
     
-    //Tehd‰‰n t‰st‰ objektista singleton
+    //We Make this object a singleton
     private void Awake()
     {
         instance = this;
@@ -103,6 +103,7 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        //When time reaches zero we launch YouDie view
         if (elapsedTime < 0)
         {
             StartCoroutine(youDie());
@@ -114,7 +115,7 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(2);
             LoadMain();
         }
-        
+        //At the last minute the timer flashes red and white
         if (elapsedTime< 60f)
         {
             timer += Time.deltaTime;
@@ -131,7 +132,7 @@ public class Player : MonoBehaviour
         }
         gravity = GetComponent<Movement>().gravity;
 
-        //Pausemenu n‰kyviin ja piiloon painamalla tab n‰pp‰int‰
+        //Show and hide pause menu
         if (buttonclick == 2)
         {
             Time.timeScale = 1;

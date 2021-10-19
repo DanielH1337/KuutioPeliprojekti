@@ -141,7 +141,7 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(1);
     }
-    
+    //Highscore näkymä
     public void highscoreView()
     {
         frame[3].SetActive(false);
