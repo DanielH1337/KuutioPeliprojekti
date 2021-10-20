@@ -66,14 +66,14 @@ public class HighScoreTable : MonoBehaviour
 
        
 
-        // tulosten järjestäminen
+        // Sorting results
         for (int i =0;i<highscores.highScoreEntryList.Count; i++)
         {
             for(int j=i+1;j < highscores.highScoreEntryList.Count; j++)
             {
                 if (highscores.highScoreEntryList[j].score > highscores.highScoreEntryList[i].score)
                 {
-                    //Vaihto
+                    //Switch
                     HighScoreEntry tmp = highscores.highScoreEntryList[i];
                     highscores.highScoreEntryList[i] = highscores.highScoreEntryList[j];
                     highscores.highScoreEntryList[j] = tmp;
