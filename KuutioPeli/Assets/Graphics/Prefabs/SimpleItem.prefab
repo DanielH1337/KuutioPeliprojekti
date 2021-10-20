@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Cube
-  itemPreview: {fileID: 2800000, guid: 7873183597e1c624d89d038d1782c988, type: 3}
+  itemPreview: {fileID: 2800000, guid: 07d0f04bebb86104ca26fc8cad38e27b, type: 3}
   flip: 0
 --- !u!1 &4848147305232497098
 GameObject:

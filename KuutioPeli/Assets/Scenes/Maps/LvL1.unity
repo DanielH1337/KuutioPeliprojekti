@@ -6386,6 +6386,10 @@ PrefabInstance:
       propertyPath: gravityrev.Array.data[2]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8565161791570233810, guid: fa69d234d6edc9248b58e8bc8594b037, type: 3}
+      propertyPath: kello
+      value: 
+      objectReference: {fileID: 1316152376}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa69d234d6edc9248b58e8bc8594b037, type: 3}
 --- !u!1 &807721409 stripped
@@ -9310,6 +9314,24 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1316152376 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4054988390171210839, guid: c6a93cd83993da14eb7888d724662503, type: 3}
+  m_PrefabInstance: {fileID: 318970048108079062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1316152379
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316152376}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1320991382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14230,7 +14252,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3011585375753198500, guid: c6a93cd83993da14eb7888d724662503, type: 3}
   m_PrefabInstance: {fileID: 318970048108079062}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1316152376}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c67fce2ca943b9340aade484d8931e69, type: 3}

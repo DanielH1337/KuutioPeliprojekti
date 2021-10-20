@@ -157,5 +157,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Sphere
-  itemPreview: {fileID: 2800000, guid: 72666c8a2a7a0dc4da339d03835fbb0d, type: 3}
+  itemPreview: {fileID: 2800000, guid: afc36e27b63a94d4a84b62218b9079c1, type: 3}
   flip: 0
