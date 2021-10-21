@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Patroller : MonoBehaviour
-{
+{/*
     public Transform[] waypoints;
     public int speed;
     private int waypointIndex;
@@ -37,5 +37,5 @@ public class Patroller : MonoBehaviour
             waypointIndex = 0;
         }
         transform.LookAt(waypoints[waypointIndex].position);
-    }
+    }*/
 }

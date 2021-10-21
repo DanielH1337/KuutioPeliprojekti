@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     public static AudioClip clicksound;
     public GameObject worldCube;
     public float timer;
+    public float intensity;
+   
 
 
     //Tallennus funktio
@@ -93,7 +95,7 @@ public class Player : MonoBehaviour
     }
     
     
-    //Tehd‰‰n t‰st‰ objektista singleton
+    //We Make this object a singleton
     private void Awake()
     {
         instance = this;
@@ -101,12 +103,19 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        //When time reaches zero we launch YouDie view
         if (elapsedTime < 0)
         {
+            StartCoroutine(youDie());
+        }
+        IEnumerator youDie()
+        {
+            YouDie.SetActive(true);
             EndTimer();
+            yield return new WaitForSeconds(2);
             LoadMain();
         }
-        
+        //At the last minute the timer flashes red and white
         if (elapsedTime< 60f)
         {
             timer += Time.deltaTime;
@@ -123,7 +132,7 @@ public class Player : MonoBehaviour
         }
         gravity = GetComponent<Movement>().gravity;
 
-        //Pausemenu n‰kyviin ja piiloon painamalla tab n‰pp‰int‰
+        //Show and hide pause menu
         if (buttonclick == 2)
         {
             Time.timeScale = 1;
@@ -147,7 +156,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-
+        GameObject.FindWithTag("Player");
         Debug.Log(gravity);
         Debug.Log(worldCube.transform.position);
         clicksound = Resources.Load<AudioClip>("click");
@@ -171,7 +180,7 @@ public class Player : MonoBehaviour
     public void BeginTimer()
     {
         timerGoing = true;
-        elapsedTime = 200f;
+        elapsedTime = 100f;
 
         StartCoroutine(UpdateTimer());
     }
@@ -190,7 +199,7 @@ public class Player : MonoBehaviour
             timePlaying = TimeSpan.FromSeconds(elapsedTime);
             string timePlayinghStr = "Time: " + timePlaying.ToString("mm':'ss");
             Timertext.text = timePlayinghStr;
-
+            //GlitchEffect.flipIntensity = 1f / elapsedTime;
             yield return null;
         }
     }
