@@ -43,7 +43,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892940734857440929}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 32.22, y: -15, z: -2.432}
+  m_LocalPosition: {x: 22.71, y: -15, z: -2.432}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1892940735805089650}
@@ -89,10 +89,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1892940735699249494}
   - component: {fileID: 1892940735699249493}
-  - component: {fileID: 1892940735699249492}
+  - component: {fileID: 1624261429}
   m_Layer: 0
   m_Name: controller
-  m_TagString: Untagged
+  m_TagString: coll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,8 +135,8 @@ MonoBehaviour:
   Loop: 1
   speed: 4
   playerobj: {fileID: 0}
---- !u!135 &1892940735699249492
-SphereCollider:
+--- !u!65 &1624261429
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -146,8 +146,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 6
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 25, y: 0.1, z: 25}
+  m_Center: {x: 0, y: 1.2, z: 0}
 --- !u!1 &1892940735805089651
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,10 +222,10 @@ GameObject:
   - component: {fileID: 7264779307890927704}
   - component: {fileID: 6620592278060770322}
   - component: {fileID: 115025936941641346}
-  - component: {fileID: 8081761771660004507}
+  - component: {fileID: 65612062}
   m_Layer: 0
   m_Name: deathtrig
-  m_TagString: Untagged
+  m_TagString: deathtrig
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -238,7 +238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8045021046753808194}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3400002, y: 0.7700014, z: -0.040000916}
+  m_LocalPosition: {x: 0.697, y: 0.269, z: -0.007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1892940735699249494}
@@ -268,9 +268,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.1, y: 0.1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &8081761771660004507
+--- !u!54 &65612062
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
