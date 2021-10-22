@@ -118,7 +118,7 @@ public class MenuManager : MonoBehaviour
         
         nimi=PlayerPrefs.GetString("name");
 
-        if(nimi.Length!=1&& nimi.Length < 14)
+        if(nimi.Length!=1&& nimi.Length < 10)
         {
             StartCoroutine(LoadLevel());
         }
@@ -141,7 +141,7 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(1);
     }
-    
+    //Highscore näkymä
     public void highscoreView()
     {
         frame[3].SetActive(false);

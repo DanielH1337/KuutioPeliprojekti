@@ -51,10 +51,12 @@ public class RotTrig : MonoBehaviour
     {
         //Debug.Log("Rotate ON");
         //Debug.Log(rotTarget);
+
         b = true;
+        yield return new WaitForSeconds(2);
         for (float i = 0; i <= multiplyBy * rotTarget - 1; i++)
         {
-            //Debug.Log("i");
+            Debug.Log(i);
             rb.transform.Rotate(CubeVects * speed);
             //Debug.Log(rb.position.x);
             yield return null;

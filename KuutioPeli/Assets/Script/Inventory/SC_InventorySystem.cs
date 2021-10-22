@@ -192,7 +192,7 @@ public class SC_InventorySystem : MonoBehaviour
     void OnGUI()
     {
         //Inventory UI
-        GUI.Label(new Rect(5, 40, 200, 25), "Press 'Tab' to open inventory");
+        GUI.Label(new Rect(5, 60, 200, 25), "Press 'Tab' to open inventory");
 
 
         //Inventory window

@@ -11,7 +11,7 @@ to make commercial use of the work
 
 using UnityEngine;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 [AddComponentMenu("Image Effects/GlitchEffect")]
 [RequireComponent(typeof(Camera))]
 public class GlitchEffect : MonoBehaviour
@@ -21,12 +21,12 @@ public class GlitchEffect : MonoBehaviour
 	[Header("Glitch Intensity")]
 
 	//[Range(0, 1)]
-	public float intensity=0f;
+	public float intensity;
 
-	[Range(0, 1)]
+	//[Range(0, 1)]
 	public float flipIntensity;
 
-	[Range(0, 1)]
+	//[Range(0, 1)]
 	public float colorIntensity;
 
 	private float _glitchup;
@@ -36,14 +36,39 @@ public class GlitchEffect : MonoBehaviour
 	private float _glitchdownTime = 0.05f;
 	private float _flickerTime = 0.5f;
 	private Material _material;
+	public float timeElapsed=100f;
 
 	void Start()
 	{
 		_material = new Material(Shader);
+		
 	}
+    void Update()
+    {
+		//Flip intensity is getting bigger when time is getting shorter.
 
-	// Called by camera to apply image effect
-	void OnRenderImage(RenderTexture source, RenderTexture destination)
+		GameObject plr = GameObject.FindGameObjectWithTag("Player");
+		Player player = plr.GetComponent<Player>();
+		timeElapsed = player.elapsedTime;
+	
+		
+		if (timeElapsed < 60f)
+        {
+			intensity = 0.6f;
+			flipIntensity = 0.6f;
+			if(timeElapsed< 30f)
+            {
+				intensity = 1f;
+				flipIntensity = 1f;
+            }
+			
+        }
+
+    }
+	
+
+    // Called by camera to apply image effect
+    void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
 		_material.SetFloat("_Intensity", intensity);
 		_material.SetFloat("_ColorIntensity", colorIntensity);
