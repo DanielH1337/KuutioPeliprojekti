@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2335475921466520647}
   - component: {fileID: 2661402801327222854}
   - component: {fileID: 3126184240012519015}
+  - component: {fileID: 8728927912461312870}
   m_Layer: 0
   m_Name: SimpleItem 3
   m_TagString: Untagged
@@ -64,6 +65,19 @@ MonoBehaviour:
   itemName: kello
   itemPreview: {fileID: 2800000, guid: afc36e27b63a94d4a84b62218b9079c1, type: 3}
   flip: 0
+--- !u!65 &8728927912461312870
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8951467827437613999}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &5163672410738881310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77,23 +91,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1df11e88ce862ab4b8b6a272a1a469d2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1df11e88ce862ab4b8b6a272a1a469d2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1df11e88ce862ab4b8b6a272a1a469d2, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1df11e88ce862ab4b8b6a272a1a469d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: -0.21
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1df11e88ce862ab4b8b6a272a1a469d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.51
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1df11e88ce862ab4b8b6a272a1a469d2, type: 3}
       propertyPath: m_LocalPosition.z
