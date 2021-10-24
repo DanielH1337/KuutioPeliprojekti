@@ -14,8 +14,9 @@ public class SettingsMenu : MonoBehaviour
     public Dropdown textureDropdown;
     public Dropdown aaDropdown;
     public Slider volumeSlider;
-    float currentVolume;
     Resolution[] resolutions;
+    float currentVolume;
+    
 
 
     // Start is called before the first frame update
@@ -43,13 +44,16 @@ public class SettingsMenu : MonoBehaviour
         LoadSettings(currentResolutionIndex);
 
     }
-
+    
 
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("Volume", volume);
         currentVolume = volume;
+        Debug.Log(volume);
+        
     }
+
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
