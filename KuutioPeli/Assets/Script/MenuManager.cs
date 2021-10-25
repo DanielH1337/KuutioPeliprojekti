@@ -20,6 +20,7 @@ public class MenuManager : MonoBehaviour
     public EventSystem ES;
     public Animator transition,BadName;
     public AudioClip wooshSound;
+    public AudioClip clickSound;
     public float time;
     public string nimi;
 
@@ -29,6 +30,7 @@ public class MenuManager : MonoBehaviour
     //Ensimmäinen frame asetetaan cam0 mukaisesti
     void Start()
     {
+        clickSound = Resources.Load<AudioClip>("click");
         wooshSound = Resources.Load<AudioClip>("woosh");
         AudioSrc = GetComponent<AudioSource>();
         frame[0].SetActive(true);
@@ -183,7 +185,7 @@ public class MenuManager : MonoBehaviour
             AudioSrc.PlayOneShot(wooshSound);
             transition.SetTrigger("Start");
             yield return new WaitForSeconds(1);
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
         else
         {
@@ -193,7 +195,7 @@ public class MenuManager : MonoBehaviour
     //Enter name näkymä, kun ollaan painettu start button
     public void StartButton()
     {
-        AudioSrc.PlayOneShot(wooshSound);
+        AudioSrc.PlayOneShot(clickSound);
         frame[3].SetActive(false);
         frame[2].SetActive(false);
         frame[0].SetActive(false);
