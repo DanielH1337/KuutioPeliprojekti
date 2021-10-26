@@ -8,7 +8,7 @@ public class bowl : MonoBehaviour
     public int count;
     public int Target = 3;
     public int counter=0;
-    //public GameObject targetobject;
+    public GameObject targetobject;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,10 +17,11 @@ public class bowl : MonoBehaviour
             counter = 1;
             if (counter == 1)
             {
-
+                targetobject = other.gameObject;
                 count += 1;
                 Debug.Log("count: " + count);
                 counterzero();
+                Destroy(targetobject);
             }
             
         }
