@@ -107,18 +107,22 @@ public class NodePatrol : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        RaycastHit hitInfo;
+        
         if (other.tag == "deathtrig")
         {
             return;
         }
         if (other.gameObject.CompareTag("Player"))
         {
-            if(Physics.Linecast(transform.position, playerobj.transform.position, out RaycastHit hitInfo))
+            if(Physics.Linecast(transform.position, playerobj.transform.position,out hitInfo))
             {
                 //Debug.Log(hitInfo.collider);
                 if (hitInfo.collider == playerobj.GetComponent<Collider>())
                 {
-                    //Debug.Log(hitInfo);
+                  
+                    Debug.Log(hitInfo.distance);
+                    Debug.DrawRay(transform.position, playerobj.transform.position, Color.green); 
                     chase = true;
                 }
             }

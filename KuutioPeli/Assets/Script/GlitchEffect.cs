@@ -41,15 +41,17 @@ public class GlitchEffect : MonoBehaviour
 	void Start()
 	{
 		_material = new Material(Shader);
+	
 		
 	}
     void Update()
     {
 		//Flip intensity is getting bigger when time is getting shorter.
 
-		GameObject plr = GameObject.FindGameObjectWithTag("Player");
-		Player player = plr.GetComponent<Player>();
-		timeElapsed = player.elapsedTime;
+		//GameObject plr = GameObject.FindGameObjectWithTag("Player");
+		//Player player = plr.GetComponent<Player>();
+		//timeElapsed = player.elapsedTime;
+		timeElapsed = Player.instance.elapsedTime;
 	
 		
 		if (timeElapsed < 60f)

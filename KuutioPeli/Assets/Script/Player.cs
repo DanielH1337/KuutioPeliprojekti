@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     public GameObject worldCube;
     public float timer;
     public float intensity;
+    public int YouDieTrig;
    
 
 
@@ -100,21 +101,31 @@ public class Player : MonoBehaviour
     {
         instance = this;
         
+        
+    }
+    IEnumerator YouDieDelay()
+    {
+        control.enabled = false;
+        yield return new WaitForSeconds(2);
+        LoadMain();
+
     }
     private void Update()
     {
         //When time reaches zero we launch YouDie view
-        if (elapsedTime < 0)
+        if (elapsedTime <= 0)
         {
-            StartCoroutine(youDie());
+            
+            if (YouDieTrig == 0)
+            {
+                YouDieTrig += 1;
+                EndTimer();
+                YouDie.SetActive(true);
+                StartCoroutine(YouDieDelay());
+                
+            }
         }
-        IEnumerator youDie()
-        {
-            YouDie.SetActive(true);
-            EndTimer();
-            yield return new WaitForSeconds(2);
-            LoadMain();
-        }
+        
         //At the last minute the timer flashes red and white
         if (elapsedTime< 60f)
         {
@@ -156,6 +167,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        YouDieTrig = 0;
         GameObject.FindWithTag("Player");
         Debug.Log(gravity);
         Debug.Log(worldCube.transform.position);
@@ -180,7 +192,7 @@ public class Player : MonoBehaviour
     public void BeginTimer()
     {
         timerGoing = true;
-        elapsedTime = 100f;
+        elapsedTime = 130f;
 
         StartCoroutine(UpdateTimer());
     }

@@ -19,7 +19,8 @@ public class MenuManager : MonoBehaviour
     public GameObject startButton;
     public EventSystem ES;
     public Animator transition,BadName;
-    public static AudioClip wooshSound;
+    public AudioClip wooshSound;
+    public AudioClip clickSound;
     public float time;
     public string nimi;
 
@@ -29,12 +30,14 @@ public class MenuManager : MonoBehaviour
     //Ensimmäinen frame asetetaan cam0 mukaisesti
     void Start()
     {
+        clickSound = Resources.Load<AudioClip>("click");
         wooshSound = Resources.Load<AudioClip>("woosh");
         AudioSrc = GetComponent<AudioSource>();
         frame[0].SetActive(true);
         frame[1].SetActive(false);
         frame[2].SetActive(false);
         frame[3].SetActive(false);
+        frame[4].SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -85,6 +88,22 @@ public class MenuManager : MonoBehaviour
         frame1_cam.gameObject.SetActive(false);
         frame2_cam.gameObject.SetActive(true);
         frame[1].SetActive(false);
+    }
+    public void Frame3()
+    {
+        AudioSrc.PlayOneShot(wooshSound);
+        StartCoroutine(Framedelay2());
+        frame1_cam.gameObject.SetActive(false);
+        frame0_cam.gameObject.SetActive(false);
+        frame2_cam.gameObject.SetActive(true);
+    }
+    IEnumerator Framedelay2()
+    {
+        frame[1].SetActive(false);
+        frame[2].SetActive(false);
+        frame[3].SetActive(false);
+        yield return new WaitForSeconds(2);
+        frame[4].SetActive(true);
     }
     //Menu valikko viivästys
     IEnumerator Framedelay1()
@@ -166,7 +185,7 @@ public class MenuManager : MonoBehaviour
             AudioSrc.PlayOneShot(wooshSound);
             transition.SetTrigger("Start");
             yield return new WaitForSeconds(1);
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
         else
         {
@@ -176,7 +195,7 @@ public class MenuManager : MonoBehaviour
     //Enter name näkymä, kun ollaan painettu start button
     public void StartButton()
     {
-        AudioSrc.PlayOneShot(wooshSound);
+        AudioSrc.PlayOneShot(clickSound);
         frame[3].SetActive(false);
         frame[2].SetActive(false);
         frame[0].SetActive(false);
@@ -188,6 +207,11 @@ public class MenuManager : MonoBehaviour
         frame[2].SetActive(false);
         Frame1();
 
+    }
+    public void settingsBackButton()
+    {
+        frame[4].SetActive(false);
+        Frame1();
     }
     
 }

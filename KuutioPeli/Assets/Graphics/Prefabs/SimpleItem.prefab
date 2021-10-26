@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5342135922213352283}
   m_Layer: 0
   m_Name: SimpleItem
-  m_TagString: Untagged
+  m_TagString: Sakset
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

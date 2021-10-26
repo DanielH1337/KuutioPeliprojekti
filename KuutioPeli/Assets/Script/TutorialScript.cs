@@ -9,6 +9,7 @@ public class TutorialScript : MonoBehaviour
     public GameObject[] frames;
     static AudioSource AudioSrc;
     public Animator transition;
+    public static AudioClip clickSound;
 
 
 
@@ -16,8 +17,10 @@ public class TutorialScript : MonoBehaviour
     // Adding tutorial to frames, where every frame shown and hidden after button press.
     void Start()
     {
+        
         AudioSrc = GetComponent<AudioSource>();
         wooshSound = Resources.Load<AudioClip>("woosh");
+        clickSound = Resources.Load<AudioClip>("click");
         frames[0].SetActive(true);
         frames[1].SetActive(false);
         frames[2].SetActive(false);
@@ -26,7 +29,7 @@ public class TutorialScript : MonoBehaviour
 
     public void firstSwitch()
     {
-        AudioSrc.PlayOneShot(wooshSound);
+        AudioSrc.PlayOneShot(clickSound);
         frames[0].SetActive(false);
         frames[1].SetActive(true);
         frames[2].SetActive(false);
@@ -34,7 +37,7 @@ public class TutorialScript : MonoBehaviour
     }
     public void secondSwitch()
     {
-        AudioSrc.PlayOneShot(wooshSound);
+        AudioSrc.PlayOneShot(clickSound);
         frames[0].SetActive(false);
         frames[1].SetActive(false);
         frames[2].SetActive(true);
@@ -42,7 +45,7 @@ public class TutorialScript : MonoBehaviour
     }
     public void thirdSwitch()
     {
-        AudioSrc.PlayOneShot(wooshSound);
+        AudioSrc.PlayOneShot(clickSound);
         frames[0].SetActive(false);
         frames[1].SetActive(false);
         frames[2].SetActive(false);
@@ -53,6 +56,15 @@ public class TutorialScript : MonoBehaviour
         //Starts the game
         AudioSrc.PlayOneShot(wooshSound);
         StartCoroutine(startGame());
+    }
+    public void fourthswitch()
+    {
+        AudioSrc.PlayOneShot(clickSound);
+        frames[0].SetActive(false);
+        frames[1].SetActive(false);
+        frames[2].SetActive(false);
+        frames[3].SetActive(false);
+        frames[4].SetActive(true);
     }
     IEnumerator startGame()
     {

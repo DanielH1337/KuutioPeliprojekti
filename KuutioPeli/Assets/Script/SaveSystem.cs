@@ -7,6 +7,7 @@ public static class SaveSystem
 {
     public static void SavePlayer(Player player)
     {
+        //Laitetaan arvot playerdata luokkaan, ja tallennetaan tiedot binary formatterilla persistent data path polkuun.
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/player.fun";
         FileStream stream = new FileStream(path, FileMode.Create);
@@ -18,6 +19,7 @@ public static class SaveSystem
     }
     public static PlayerData LoadPlayer()
     {
+        //Avataan Bin‰‰ritiedosto ja ladataan sielt‰ arvot playerdata luokkaan, josta ne ladataan pelaajalle..
         string path = Application.persistentDataPath + "/player.fun";
         if (File.Exists(path))
         {
@@ -37,6 +39,8 @@ public static class SaveSystem
     }
     public static void Deleteall()
     {
+        //Poistetaan kaikki tiedot
+
         string Path = Application.persistentDataPath + "/player.fun";
         if (File.Exists(Path))
         {

@@ -6,6 +6,9 @@ TagManager:
   tags:
   - coll
   - deathtrig
+  - Avain
+  - Kello
+  - Sakset
   layers:
   - Default
   - TransparentFX
