@@ -8,7 +8,7 @@ public class bowl : MonoBehaviour
     public int count;
     public int Target = 3;
     public int counter=0;
-    public GameObject targetobject;
+    private GameObject targetobject;
 
     private void OnTriggerEnter(Collider other)
     {
