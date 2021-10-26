@@ -29,7 +29,7 @@ public class RotTrig : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player" && trigger_safety == false)
+        if (other.gameObject.tag == "Player" && trigger_safety == false && transform.GetComponent<bowl>().CheckBool == true)
         {
             if (Input.GetKey("e"))
             {
