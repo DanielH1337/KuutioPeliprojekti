@@ -33,10 +33,10 @@ public class bowl : MonoBehaviour
     }
     void Update()
     {
-     /*   if(count == Target)
+        if(count == Target)
         {
             CheckBool = true;
-        }*/
+        }
 
     }
 }
