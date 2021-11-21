@@ -12,6 +12,9 @@ ModelImporter:
   - first:
       74: 2938494297459139218
     second: Koppakuoriainen_arma|Walk
+  - first:
+      74: -6267145356547834097
+    second: Koppakuoriainen_arma|Walk (1)
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -41,8 +44,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Koppakuoriainen_arma|Attack
-      takeName: Koppakuoriainen_arma|Attack
+      name: Koppakuoriainen_arma|Walk (1)
+      takeName: Koppakuoriainen_arma|Walk
       internalID: 0
       firstFrame: 0
       lastFrame: 59

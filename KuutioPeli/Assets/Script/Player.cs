@@ -160,6 +160,10 @@ public class Player : MonoBehaviour
             buttonclick += 1;
             PauseMenu.SetActive(true);
             TabKeyText.SetActive(false);
+            if (settings.activeSelf == true)
+            {
+                settings.SetActive(false);
+            }
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             Time.timeScale = 0;
