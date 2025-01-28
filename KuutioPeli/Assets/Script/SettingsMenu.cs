@@ -68,7 +68,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetTextureQuality(int textureIndex)
     {
-        QualitySettings.masterTextureLimit = textureIndex;
+        QualitySettings.globalTextureMipmapLimit = textureIndex;
         qualityDropdown.value = 6;
     }
     public void SetAntiAliasing(int aaIndex)

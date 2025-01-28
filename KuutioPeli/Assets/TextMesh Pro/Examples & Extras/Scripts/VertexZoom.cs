@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 
 
 namespace TMPro.Examples
@@ -13,6 +14,7 @@ namespace TMPro.Examples
         public float SpeedMultiplier = 1.0f;
         public float CurveScale = 1.0f;
 
+        
         private TMP_Text m_TextComponent;
         private bool hasTextChanged;
 
@@ -37,7 +39,7 @@ namespace TMPro.Examples
 
         void Start()
         {
-            StartCoroutine(AnimateVertexColors());
+            StartCoroutine(AnimateVertexColors(m_TextComponent.textInfo));
         }
 
 
@@ -51,14 +53,14 @@ namespace TMPro.Examples
         /// Method to animate vertex colors of a TMP Text object.
         /// </summary>
         /// <returns></returns>
-        IEnumerator AnimateVertexColors()
+        IEnumerator AnimateVertexColors(TMP_TextInfo textInfo)
         {
 
             // We force an update of the text object since it would only be updated at the end of the frame. Ie. before this code is executed on the first frame.
             // Alternatively, we could yield and wait until the end of the frame when the text object will be generated.
             m_TextComponent.ForceMeshUpdate();
 
-            TMP_TextInfo textInfo = m_TextComponent.textInfo;
+            TMP_TextInfo infooo = m_TextComponent.textInfo;
 
             Matrix4x4 matrix;
             TMP_MeshInfo[] cachedMeshInfoVertexData = textInfo.CopyMeshInfoVertexData();
@@ -150,8 +152,8 @@ namespace TMPro.Examples
                     destinationVertices[vertexIndex + 3] += offset;
 
                     // Restore Source UVS which have been modified by the sorting
-                    Vector2[] sourceUVs0 = cachedMeshInfoVertexData[materialIndex].uvs0;
-                    Vector2[] destinationUVs0 = textInfo.meshInfo[materialIndex].uvs0;
+                    Vector4[] sourceUVs0 = cachedMeshInfoVertexData[materialIndex].uvs0;
+                    Vector4[] destinationUVs0 = textInfo.meshInfo[materialIndex].uvs0;
 
                     destinationUVs0[vertexIndex + 0] = sourceUVs0[vertexIndex + 0];
                     destinationUVs0[vertexIndex + 1] = sourceUVs0[vertexIndex + 1];
@@ -178,7 +180,7 @@ namespace TMPro.Examples
 
                     // Updated modified vertex attributes
                     textInfo.meshInfo[i].mesh.vertices = textInfo.meshInfo[i].vertices;
-                    textInfo.meshInfo[i].mesh.uv = textInfo.meshInfo[i].uvs0;
+                    //textInfo.meshInfo[i].mesh.uv = textInfo.meshInfo[i].uvs0;
                     textInfo.meshInfo[i].mesh.colors32 = textInfo.meshInfo[i].colors32;
 
                     m_TextComponent.UpdateGeometry(textInfo.meshInfo[i].mesh, i);
