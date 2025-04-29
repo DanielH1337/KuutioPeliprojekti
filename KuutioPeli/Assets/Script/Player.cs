@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     public float timer;
     public float intensity;
     public int YouDieTrig;
+    public GameObject settings;
    
 
 
@@ -192,7 +193,7 @@ public class Player : MonoBehaviour
     public void BeginTimer()
     {
         timerGoing = true;
-        elapsedTime = 130f;
+        elapsedTime = 180f;
 
         StartCoroutine(UpdateTimer());
     }
@@ -221,6 +222,16 @@ public class Player : MonoBehaviour
         timerGoing = false;
         Time.timeScale = 1;
         StartCoroutine(loadMain());
+    }
+    public void ShowSettings()
+    {
+        settings.SetActive(true);
+        PauseMenu.SetActive(false);
+    }
+    public void HideSettings()
+    {
+        settings.SetActive(false);
+        PauseMenu.SetActive(true);
     }
    IEnumerator loadMain()
     {
